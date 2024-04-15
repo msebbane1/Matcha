@@ -32,13 +32,13 @@ IV.1 Registration and Signing-in :
     • After Registration : an email with a unique link is send to the user to verify their account
 
     • Login : Username and password and reset password with email (if they forget it)
-    
+
     • Log out : with just one click from any page on the site
 
 IV.2 User profile :
 
-    • For first connection :
-        User must provide : (The gender, Sexual preferences, A biography, A list of interests with tags (#vegan, #geek), Up to 5 pictures, including one to be used as a profile picture)
+    • For first connection user must provide :
+        The gender, Sexual preferences, A biography, A list of interests with tags, Up to 5 pictures(including a profile picture)
 
     • Modifications : all informations of the user (GPS position, gender, email, password etc..)
 
@@ -46,7 +46,7 @@ IV.2 User profile :
 
     • Public “fame rating” : ?
 
-    • GPS positioning : If the user does not want to be positioned, you must find a way to locate them even without their knowledge.
+    • GPS positioning : Choose to be positioned or not, if not must find a way to locate them
 
 IV.3 Browsing
 
