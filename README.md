@@ -69,5 +69,17 @@ IV.5 Profile of other users
 
 IV.6 Chat
 
+    • Matches : Can chat only if they liked each other (considered as connected and matches)
+
+    • Real-time chat : maximum delay of 10s, see from any page if a new msg is received
+
 IV.7 Notifications
+
+    • notified in real-time :
+
+        - when the user receives a "like" or a msg,
+        - When the user’s profile has been viewed
+        - When they liked each other (Matchs)
+        - When a connected user “unlikes” the user
+        - See from any page, that a notif hasn’t been read
 
