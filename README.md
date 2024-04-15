@@ -1,15 +1,5 @@
 # 1. VUE D'ENSEMBLE MATCHA
 
-• Web
-
-• Gestion utilisateur
-
-• Cybersécurité
-
-• Graphiques
-
-• Accessibilité
-
 Utilisations Frameworks - micro-frameworks and any libraries -
 
     • Back-end : Express Node.js ou Flask pour Python
@@ -22,4 +12,44 @@ Lancement
     -> make ou docker-compose up --build
     -> backend : http://localhost:8080/
     -> frontend : http://localhost:3000/
+
+• Web
+
+• Gestion utilisateur
+
+• Cybersécurité
+
+• Graphiques
+
+• Accessibilité
+
+# 2. MANDATORY PART
+
+IV.1 Registration and Signing-in :
+    • Register : E-mail, username, last name, first name, password (protected)
+    • After Registration : an email with a unique link is send to the user to verify their account
+    • Login : Username and password and reset password with email (if they forget it)
+    • Log out : with just one click from any page on the site
+
+IV.2 User profile :
+    • For first connection :
+        User must provide : (The gender, Sexual preferences, A biography, A list of interests with tags (#vegan, #geek), Up to 5 pictures, including one to be used as a profile picture)
+
+    • Modifications : all informations of the user (GPS position, gender, email, password etc..)
+
+    • Views : The user can see who has viewed their profile or "liked" them
+
+    • Public “fame rating” : ?
+    
+    • GPS positioning : If the user does not want to be positioned, you must find a way to locate them even without their knowledge.
+
+IV.3 Browsing
+
+IV.4 Research
+
+IV.5 Profile of other users
+
+IV.6 Chat
+
+IV.7 Notifications
 
