@@ -46,7 +46,9 @@ IV.3 Browsing - list of suggestions that match their profile -
 
     • Sortable and filterable : by age, location, “fame rating”, and common tags
 
-IV.4 Research
+IV.4 Research - an advanced search -
+
+    • Selecting criteria : age gap, “fame rating” gap, location, one or multiple tags
 
 IV.5 Profile of other users
 
