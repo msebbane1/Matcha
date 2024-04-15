@@ -8,6 +8,21 @@ Utilisations Frameworks - micro-frameworks and any libraries -
     • Base de données : PostgreSQL ou MariaDB
     • Web Server : Nginx ou Apache
 
+General Instructions
+
+    • Database : create queries manually
+
+    • Website : must have a header, a main section and a footer
+
+    • Mobile : usable on a mobile phone and keep an acceptable layout on small resolutions
+
+    • Errors : Not any errors, warnings or in the web console
+    
+    • Security : 
+        - NOT have plain text passwords stored in the db
+        - Protected against SQL injections
+        - Validation of all the forms and upload
+
 Lancement
     -> make ou docker-compose up --build
     -> backend : http://localhost:8080/
@@ -76,7 +91,6 @@ IV.6 Chat
 IV.7 Notifications
 
     • notified in real-time :
-
         - when the user receives a "like" or a msg,
         - When the user’s profile has been viewed
         - When they liked each other (Matchs)
