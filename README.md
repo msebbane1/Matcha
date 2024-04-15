@@ -1,12 +1,4 @@
-1. VUE D'ENSEMBLE
-
-Utilisations:
-- micro-frameworks and any libraries -
-
-• Back-end : ?
-• Front-end :  ? UI libraries (React, Angular, Vue...)
-• Base de données : ? (PostgreSQL)
-• Web Server : ? Nginx 
+# 1. VUE D'ENSEMBLE MATCHA
 
 • Web
 
@@ -18,4 +10,16 @@ Utilisations:
 
 • Accessibilité
 
-Lancement -> make ou docker-compose up --build -> backend : http://127.0.0.1:8080/ -> frontend : http://localhost:3000/
+Utilisations Frameworks - micro-frameworks and any libraries -
+
+    • Back-end : Express Node.js ou Flask pour Python
+    • Front-end : React ou Angular ou Vue
+    • Language : Javascript ou Python
+    • Base de données : PostgreSQL ou MariaDB
+    • Web Server : Nginx ou Apache
+
+Lancement
+    -> make ou docker-compose up --build
+    -> backend : http://localhost:8080/
+    -> frontend : http://localhost:3000/
+
