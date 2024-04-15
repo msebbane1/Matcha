@@ -52,6 +52,21 @@ IV.4 Research - an advanced search -
 
 IV.5 Profile of other users
 
+    • Public Profiles User : must contain all informations(not password and email)
+
+    • Profile "Likes" : 
+        - When two people “like” each other’s profiles, they are “connected” and can chat
+        - Can remove a “like" and not be able to chat
+
+    • History : add an visit history
+
+    • Status : Can see if is online, if not add a date/time of the last connection
+
+    • Report : Can report the profile as a “fake account”
+
+    • Block User : Can block a user (will no appear in the search results, can't chat and notifs)
+
+
 IV.6 Chat
 
 IV.7 Notifications
