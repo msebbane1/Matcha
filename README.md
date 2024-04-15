@@ -13,16 +13,6 @@ Lancement
     -> backend : http://localhost:8080/
     -> frontend : http://localhost:3000/
 
-• Web
-
-• Gestion utilisateur
-
-• Cybersécurité
-
-• Graphiques
-
-• Accessibilité
-
 # 2. MANDATORY PART
 
 IV.1 Registration and Signing-in :
