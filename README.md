@@ -38,7 +38,7 @@ IV.1 Registration and Signing-in :
 IV.2 User profile :
 
     • For first connection user must provide :
-        The gender, Sexual preferences, A biography, A list of interests with tags, Up to 5 pictures(including a profile picture)
+    The gender, Sexual preferences, A biography, A list of interests with tags, Up to 5 pictures(including a profile picture)
 
     • Modifications : all informations of the user (GPS position, gender, email, password etc..)
 
@@ -48,7 +48,13 @@ IV.2 User profile :
 
     • GPS positioning : Choose to be positioned or not, if not must find a way to locate them
 
-IV.3 Browsing
+IV.3 Browsing - list of suggestions that match their profile -
+
+    • Proposition of “interesting” profiles : only men for a hetero-sexual girls. If the user’s orientation isn’t specified is bisexual.
+
+    • Matches :  Same geographic area (Priority), A maximum of common tags, A maximum “fame rating”
+
+    • Sortable and filterable : by age, location, “fame rating”, and common tags
 
 IV.4 Research
 
