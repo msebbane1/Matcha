@@ -2,11 +2,11 @@
 
 Utilisations Frameworks - micro-frameworks and any libraries -
 
-    • Back-end : Express Node.js ou Flask pour Python
-    • Front-end : React ou Angular ou Vue
-    • Language : Javascript ou Python
-    • Base de données : PostgreSQL ou MariaDB
-    • Web Server : Nginx ou Apache
+    • Back-end : Flask pour Python
+    • Front-end : Angular
+    • Language : Javascript
+    • Base de données : PostgreSQL
+    • Web Server : Nginx
 
 General Instructions
 
