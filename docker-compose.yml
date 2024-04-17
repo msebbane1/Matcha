@@ -1,0 +1,33 @@
+version: '3'
+services:
+#BACKEND
+  backend:
+   build:
+     context: ./backend
+   image: node:latest
+   container_name: backend
+   working_dir: /app
+   ports:
+     - "8080:8080"
+   volumes:
+     - ./backend:/app
+   restart: unless-stopped
+   command: sh -c "yarn install && yarn start"
+
+  # FRONTEND
+  frontend:
+   build:
+     context: ./frontend
+   image: node:20.9.0
+   container_name: frontend
+   working_dir: /app
+   volumes:
+     - ./frontend:/app
+   ports:
+     - "3000:3000"
+   restart: unless-stopped
+   command: sh -c "yarn install && yarn global add @angular/cli@latest && yarn start"
+   depends_on:
+     - backend
+
+

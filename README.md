@@ -97,3 +97,10 @@ IV.7 Notifications
         - When a connected user “unlikes” the user
         - See from any page, that a notif hasn’t been read
 
+Lien utile :
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/background-image
+
+et lien pour trouver stage/alternance :
+
+welcometothejungle.com
