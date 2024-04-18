@@ -1,11 +1,14 @@
 {
   "name": "Matcha",
   "version": "1.0.0",
-  "description": "Description de votre projet",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
     "express": "^4.19.2"
   }
