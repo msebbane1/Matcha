@@ -29,5 +29,18 @@ services:
    command: sh -c "yarn install && yarn start"
    depends_on:
      - backend
+  # NGINX
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    ports:
+      - "1024:1024"
+      - "8082:8082"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/localhost.crt:/etc/nginx/localhost.crt
+      - ./nginx/localhost.key:/etc/nginx/localhost.key
+    depends_on:
+      - frontend
 
 
