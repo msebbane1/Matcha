@@ -1,0 +1,7 @@
+######## FrontEnd - Angular ########
+
+CMD :
+
+ng build
+ng serve
+ng generate component mon-composant

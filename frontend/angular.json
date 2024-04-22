@@ -27,12 +27,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -71,7 +66,7 @@
               }
           },
           "defaultConfiguration": "development"
-      },      
+      }, 
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
@@ -100,6 +95,6 @@
     }
   },
   "cli": {
-    "analytics": "34a19eda-dc63-4d12-bf9b-393b8ed2c24e"
+    "analytics": false
   }
 }
