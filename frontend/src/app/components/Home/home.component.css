@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+}
+
+.title {
+  font-size: 4em;
+  color: white;
+}
+
+.image-class {
+  width: 50px;  /* Ajustez la largeur selon vos besoins */
+  height: auto; /* Maintient le ratio de l'image */
+  margin-left: 10px; /* Ajoute un espace à gauche de l'image */
+}

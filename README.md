@@ -2,7 +2,7 @@
 
 Utilisations Frameworks - micro-frameworks and any libraries -
 
-    • Back-end : Flask pour Python
+    • Back-end : Express pour Node.js
     • Front-end : Angular
     • Language : Javascript
     • Base de données : PostgreSQL
@@ -25,8 +25,8 @@ General Instructions
 
 Lancement
     -> make ou docker-compose up --build
-    -> backend : http://localhost:8080/
-    -> frontend : http://localhost:3000/
+    -> backend : https://localhost:8080/
+    -> frontend : https://localhost:4200/
 
 # 2. MANDATORY PART
 
