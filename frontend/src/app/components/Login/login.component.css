@@ -1,20 +1,137 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: black;
-  }
-  
-  .title {
-    font-size: 4em;
-    color: white;
-  }
+@font-face {
+  font-family: 'Grace';
+  src: url('/assets/fonts/CoveredByYourGrace-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
-  .image-class {
-    width: 50px;  /* Ajustez la largeur selon vos besoins */
-    height: auto; /* Maintient le ratio de l'image */
-    margin-left: 10px; /* Ajoute un espace à gauche de l'image */
+@font-face {
+  font-family: 'Dancing';
+  src: url('/assets/fonts/Exo2-Font.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Bungee';
+  src: url('/assets/fonts/Bungee.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*.background-image {
+  background: linear-gradient(45deg, #8A2BE2, #FF69B4, #FFD700);
+  background-size: 600% 600%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  position: relative;
+  display: grid;
+  place-items: center;
+  animation: gradientAnimation 20s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
   }
+  50% {
+    background-position: 100% 50%;
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.background-image {
+  background-color: #ffeee5;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  height: 100vh;
+}*/
+
+.background-image {
+  background-image: url('/assets/12.jpg');
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+
+  display: grid;
+  place-items: center;
+}
+
+.container {
+  display: grid;
+  /*grid-template-rows: auto auto;*/
+  text-align: center;
+}
+
+.image-class {
+  width: 114px;
+  height: auto;
+  margin-left: 288px;
+  margin-top: -88px;
+}
+
+.title-text {
+  font-size: 150%;
+  font-style: italic;
+  font-family: 'Dancing';
+  color: black;
+  user-select: none;
+}
+
+.title-text-logo {
+  font-family: 'Grace', sans-serif;
+  font-size: 9em;
+  color: #fe7e61;
+  grid-row: 1;
+  margin-right: 62px;
+  user-select: none;
+  animation: bounceText 1s ease-out 1;
+}
+
+@keyframes bounceText {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(0);
+  }
+  80% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.signin-button {
+  background-color: transparent;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 50px; 
+  border: 3px solid #e9b3d5; 
+  box-shadow: 0px 20px 100px rgba(0, 0, 0, 0.2);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  font-family: sans-serif;
+  color: #e9b3d5;
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+  grid-column: 1;
+  margin-top: 20px;
+}
+
+.signin-button:hover {
+  color: #fe7e61;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+  
+
   
   

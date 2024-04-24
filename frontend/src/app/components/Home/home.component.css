@@ -12,7 +12,7 @@
 }
 
 .image-class {
-  width: 50px;  /* Ajustez la largeur selon vos besoins */
-  height: auto; /* Maintient le ratio de l'image */
-  margin-left: 10px; /* Ajoute un espace à gauche de l'image */
+  width: 50px; 
+  height: auto; 
+  margin-left: 10px;
 }
