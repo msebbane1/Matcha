@@ -14,6 +14,7 @@ import { Router, NavigationStart } from '@angular/router';
 export class LoginModalComponent {
   email: string = '';
   password: string = '';
+  password_signup: string = '';
   last_name: string = '';
   first_name: string = '';
   username: string = '';
