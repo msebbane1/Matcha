@@ -1,4 +1,6 @@
 import { Component, Renderer2, ElementRef, AfterViewInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { LoginModalComponent } from './Modal/login-modal.component';
 
 
 @Component({
@@ -11,7 +13,12 @@ import { Component, Renderer2, ElementRef, AfterViewInit } from '@angular/core';
 
 export class LoginComponent implements AfterViewInit {
 
-  constructor(private renderer: Renderer2, private el: ElementRef) {}
+  constructor(private renderer: Renderer2, private el: ElementRef, private modalService: NgbModal) {}
+
+  openModal() {
+    const modalRef = this.modalService.open(LoginModalComponent);
+    modalRef.componentInstance.name = 'World';
+  }
 
   ngAfterViewInit(): void {
     document.addEventListener('mousemove', (event) => {

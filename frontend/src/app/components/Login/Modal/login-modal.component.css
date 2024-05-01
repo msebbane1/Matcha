@@ -1,0 +1,225 @@
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+a {
+  text-decoration: none;
+}
+
+.button {
+  color: #fff;
+}
+.button {
+  padding: 6px 24px;
+  border: 2px solid #fff;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.button:active {
+  transform: scale(0.98);
+}
+
+/* From */
+.form_container {
+  position: fixed;
+  max-width: 353px;
+  height: 500px;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.2);
+  z-index: 101;
+  background: #fff;
+  /*background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(100px);*/
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease-out;
+}
+
+.form_container h2 {
+  font-size: 22px;
+  color: #0b0217;
+  text-align: center;
+}
+
+.option_field {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.form_container a {
+  color: #e9b3d5;
+  font-size: 12px;
+}
+.form_container a:hover {
+  text-decoration: underline;
+}
+.checkbox {
+  display: flex;
+  column-gap: 8px;
+  white-space: nowrap;
+}
+.checkbox input {
+  accent-color: #e9b3d5;
+}
+.checkbox label {
+  font-size: 12px;
+  cursor: pointer;
+  user-select: none;
+  color: #0b0217;
+}
+.form_container .button {
+  background: #e9b3d5;
+  margin-top: 30px;
+  width: 100%;
+  padding: 10px 0;
+  border-radius: 10px;
+}
+
+.form_container_signup .button {
+    background: #e9b3d5;
+    margin-top: 30px;
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 10px;
+  }
+.login_signup {
+  font-size: 12px;
+  text-align: center;
+  margin-top: 15px;
+}
+
+
+.form_container_signup {
+    position: fixed;
+    max-width: 353px;
+    height: 629px;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.2);
+    z-index: 101;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease-out;
+  }
+/* Icons Img */
+
+.img-class {
+    width: 72px;
+    height: auto;
+    margin-left: 40%;
+    margin-bottom: 16px;
+}
+
+/* TEST */
+
+.input-wrapper {
+  position: relative;
+  font-size: 14px;
+  margin-top: 30px;
+}
+
+.input-wrapper input {
+  all: unset;
+  width: 100%;
+  padding: 10px 0;
+  border-bottom: 1.5px solid #aaaaaa;
+  
+}
+
+.input-wrapper label {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  color: #707070;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  
+}
+
+.input-wrapper >
+  input:is(:focus, :valid) ~ label {
+    bottom: 100%;
+    font-size: 11px;
+    color: #333;
+}
+
+.input-wrapper > .underline {
+  position: absolute;
+  bottom: 0;
+  left: 10px;
+  width: 95%;
+  height: 2px;
+  background-color: #e9b3d5;
+  scale: 0 1;
+  transition: 0.3s;
+  
+}
+
+.input-wrapper >
+  input:focus ~ .underline {
+    scale: 1.1;
+  
+}
+
+.btn-close-custom {
+  color: red; /* Couleur du texte */
+  opacity: 1; /* Opacité du texte */
+  font-size: 1.5rem; /* Taille de la police */
+  background-color: transparent; /* Couleur de fond transparente */
+  border: none; /* Supprimer le bord */
+}
+
+
+/* INPUT BOX*/
+
+/*
+.input_box {
+  position: relative;
+  margin-top: 30px;
+  width: 100%;
+  height: 40px;
+}
+.input_box input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  color: #333;
+  transition: all 0.2s ease;
+  border-bottom: 1.5px solid #aaaaaa;
+}
+.input_box input:focus {
+  border-color: #e9b3d5;
+}
+.input_box i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #707070;
+}
+.input_box i.email,
+.input_box i.password {
+  left: 0;
+}
+.input_box input:focus ~ i.email,
+.input_box input:focus ~ i.password {
+  color: #e9b3d5;
+}
+.input_box i.pw_hide {
+  right: 0;
+  font-size: 18px;
+  cursor: pointer;
+}*/

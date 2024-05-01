@@ -1,0 +1,72 @@
+<section>
+  <div class="form_container">
+    <div class="modal-header">
+      <!-- Close button -->
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+    </div>
+    <!-- Login Form -->
+    <div class="form login_form" *ngIf="afficherConnexion">
+      <img src="assets/mug7.png" class="img-class ">
+        <h2>Se connecter</h2>
+       <!-- <div class="input_box">
+          <input type="email" placeholder="Adresse e-mail" [(ngModel)]="email" name="email" required />
+        </div> -->
+        <div class="input-wrapper">
+          <input type="email" id="email" [(ngModel)]="email" name="email" required autocomplete="off"/>
+          <label for="email">Adresse e-mail</label>
+          <div class="underline"></div>
+        </div>
+        <div class="input-wrapper">
+          <input type="password" id="password" [(ngModel)]="password" name="password" required autocomplete="off"/>
+          <label for="password">Mot de passe</label>
+          <div class="underline"></div>
+        </div>
+        <div class="option_field">
+          <span class="checkbox">
+            <input type="checkbox" id="check" />
+            <label for="check">Se souvenir de moi</label>
+          </span>
+          <a href="#" class="forgot_pw">Mot de passe oublié ?</a>
+        </div>
+        <button class="button" (click)="onSubmit()">Connection</button>
+        <div class="login_signup">Pas de compte Matcha? <a href="#" id="signup" (click)="toggleForm()">Creer un compte</a></div>
+      
+    </div>
+    </div>
+    <!-- Signup Form -->
+    <div class="form_container_signup"  *ngIf="!afficherConnexion">
+        <h2>Creer un compte</h2>
+        <div class="input-wrapper">
+          <input type="email" id="email" required autocomplete="off"/>
+          <label for="email">Adresse e-mail</label>
+          <div class="underline"></div>
+        </div>
+        <div class="input-wrapper">
+          <input type="last_name" id="firt_name" [(ngModel)]="last_name" name="last_name" required autocomplete="off"/>
+          <label for="last_name">Nom</label>
+          <div class="underline"></div>
+        </div>
+        <div class="input-wrapper">
+          <input type="first_name" id="first_name" [(ngModel)]="first_name" name="first_name" required autocomplete="off"/>
+          <label for="first_name">Prenom</label>
+          <div class="underline"></div>
+        </div>
+        <div class="input-wrapper">
+          <input type="username" id="username" [(ngModel)]="username" name="username" required autocomplete="off"/>
+          <label for="username">Pseudo</label>
+          <div class="underline"></div>
+        </div>
+        <div class="input-wrapper">
+          <input type="password" id="password" [(ngModel)]="password" name="password" required autocomplete="off"/>
+          <label for="password">Mot de passe</label>
+          <div class="underline"></div>
+        </div>
+        <div class="input-wrapper">
+          <input type="password" id="check_password" [(ngModel)]="check_password" name="check_password" required autocomplete="off"/>
+          <label for="check_password">Confirme ton mot de passe</label>
+          <div class="underline"></div>
+      </div>
+        <button class="button">Creer un compte</button>
+        <div class="login_signup">Vous avez déjà un compte ? <a href="#" id="login" (click)="toggleForm()">Se connecter</a></div>
+    </div>
+</section>
