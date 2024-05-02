@@ -1,33 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationStart } from '@angular/router';
+import { RegisterModalComponent } from './register-modal.component';
+import axios from 'axios'; 
 
 @Component({
   selector: 'app-login-modal',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, RegisterModalComponent],
   templateUrl: './login-modal.component.html',
   styleUrls: ['./login-modal.component.css']
 })
 export class LoginModalComponent {
   email: string = '';
   password: string = '';
-  password_signup: string = '';
-  last_name: string = '';
-  first_name: string = '';
-  username: string = '';
-  check_password: string = '';
 
   constructor(public activeModal: NgbActiveModal, private router: Router) {}
 
-
-  afficherConnexion: boolean = true;
+  @Input() showRegisterModal: boolean = true;
   
-
   toggleForm() {
-    this.afficherConnexion = !this.afficherConnexion;
+    this.showRegisterModal = !this.showRegisterModal;
   }
 
   closeModal() {
@@ -35,14 +30,23 @@ export class LoginModalComponent {
   }
 
   onSubmit() {
-    this.activeModal.dismiss('Close modal');
+    const formData = {
+      username: this.email,
+      password: this.password
+    };
 
-
-  setTimeout(() => {
-    this.router.navigateByUrl('/home');
-  }, 500);
+    axios.post<any>('https://localhost:8080/auth/login', formData)
+      .then(response => {
+        console.log(response.data);
+        setTimeout(() => {
+          this.router.navigateByUrl('/home');
+        }, 500);
+        this.activeModal.dismiss('Close modal');
+      })
+      .catch(error => {
+        console.error('Erreur lors de la connexion :', error);
+      });
   }
-  
 
 }
 
