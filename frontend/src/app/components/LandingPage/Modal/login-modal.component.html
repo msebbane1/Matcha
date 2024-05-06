@@ -8,16 +8,14 @@
     <div class="form login_form" *ngIf="showRegisterModal">
       <img src="assets/mug7.png" class="img-class ">
         <h2>Se connecter</h2>
-       <!-- <div class="input_box">
-          <input type="email" placeholder="Adresse e-mail" [(ngModel)]="email" name="email" required />
-        </div> -->
         <div class="input-wrapper">
           <input id="username" [(ngModel)]="username"  required autocomplete="off"/>
           <label for="username">Nom d'utilisateur</label>
           <div class="underline"></div>
         </div>
         <div class="input-wrapper">
-          <input type="password" id="password" [(ngModel)]="password" name="password" required autocomplete="off"/>
+          <div class="show-hide" type="button" (click)='toggleShowPassword()'>{{showPassword ? 'Masquer' : 'Afficher'}}</div>
+          <input [type]="showPassword ? 'text' : 'password'" id="password" [(ngModel)]="password" name="password" required autocomplete="off"/>
           <label for="password">Mot de passe</label>
           <div class="underline"></div>
         </div>
@@ -26,7 +24,7 @@
             <input type="checkbox" id="check" />
             <label for="check">Se souvenir de moi</label>
           </span>
-          <a href="#" class="forgot_pw">Mot de passe oublié ?</a>
+          <a href="#" class="forgot_pw" (click)="toggleReset()">Mot de passe oublié ?</a>
         </div>
         <button class="button" (click)="onSubmit()">Connection</button>
         <div class="login_signup">Pas de compte Matcha? <a href="#" id="signup" (click)="toggleForm()">Creer un compte</a></div>
@@ -34,5 +32,8 @@
     </div>
     <div *ngIf="!showRegisterModal">
       <app-register-modal [showRegisterModal]="showRegisterModal" (toggleForm)="toggleForm()"></app-register-modal>
+    </div>
+    <div *ngIf="!showResetPasswordModal">
+      <app-reset-pw-modal [showResetPasswordModal]="showResetPasswordModal" (toggleReset)="toggleReset()"></app-reset-pw-modal>
     </div>
 </section>

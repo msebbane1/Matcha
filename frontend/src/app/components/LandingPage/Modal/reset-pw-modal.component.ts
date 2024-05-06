@@ -6,53 +6,33 @@ import { Router, NavigationStart } from '@angular/router';
 import axios from 'axios'; 
 
 @Component({
-  selector: 'app-register-modal',
+  selector: 'app-reset-pw-modal',
   standalone: true,
   imports: [FormsModule, CommonModule],
-  templateUrl: './register-modal.component.html',
-  styleUrls: ['./register-modal.component.css']
+  templateUrl: './reset-pw-modal.component.html',
+  styleUrls: ['./reset-pw-modal.component.css']
 })
-export class RegisterModalComponent {
+export class ResetPwModalComponent {
 
   constructor(public activeModal: NgbActiveModal, private router: Router) {}
 
-  @Output() toggleForm = new EventEmitter<void>();
-  @Input() showRegisterModal: boolean = true;
-
-  onToggleFormClick() {
-    this.toggleForm.emit();
-  }
+  @Input() showResetPasswordModal: boolean = true;
 
   email: string = '';
-  password: string = '';
-  last_name: string = '';
-  first_name: string = '';
-  username: string = '';
-  check_password: string = '';
   errorMessage: boolean = false;
   successMessage: boolean = false;
-  showPassword: boolean = false;
 
 
   closeModal() {
     this.activeModal.dismiss('Cross click');
   }
-
-  toggleShowPassword() {
-    this.showPassword = !this.showPassword;
-  }
   
   onSubmit() {
     const formData = {
       email: this.email,
-      last_name: this.last_name,
-      first_name: this.first_name,
-      username: this.username,
-      password: this.password,
-      check_password: this.check_password
     };
 
-    axios.post<any>('https://localhost:8080/auth/register', formData)
+    axios.post<any>('https://localhost:8080/auth/reset-password', formData)
       .then(response => {
         console.log(response.data);
         this.successMessage = response.data.message;

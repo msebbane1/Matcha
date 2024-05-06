@@ -2,6 +2,10 @@
   <div>{{ errorMessage }}</div>
   <button type="button" class="btn-close" (click)="errorMessage = false" aria-label="Close"></button>
 </div>
+<div *ngIf="successMessage" class="alert alert-success alert-dismissible" role="alert">
+  <div>{{ successMessage }}</div>
+  <button type="button" class="btn-close" (click)="successMessage = false" aria-label="Close"></button>
+</div>
 <div class="form_container_signup">
           <h2>Creer un compte</h2>
           <div class="input-wrapper">
@@ -25,12 +29,19 @@
             <div class="underline"></div>
           </div>
           <div class="input-wrapper">
-            <input type="password" id="password" [(ngModel)]="password" name="password" required autocomplete="off"/>
+            <div class="show-hide" type="button" (click)="toggleShowPassword()">
+              {{ showPassword ? 'Masquer' : 'Afficher' }}
+            </div>
+            <input [type]="showPassword ? 'text' : 'password'" id="password" [(ngModel)]="password" name="password" required autocomplete="off"/>
             <label for="password">Mot de passe</label>
             <div class="underline"></div>
           </div>
+          
           <div class="input-wrapper">
-            <input type="password" id="check_password" [(ngModel)]="check_password" name="check_password" required autocomplete="off"/>
+            <div class="show-hide" type="button" (click)="toggleShowPassword()">
+              {{ showPassword ? 'Masquer' : 'Afficher' }}
+            </div>
+            <input [type]=" showPassword ? 'text' : 'password'" id="check_password" [(ngModel)]="check_password" name="check_password" required autocomplete="off"/>
             <label for="check_password">Confirme ton mot de passe</label>
             <div class="underline"></div>
         </div>

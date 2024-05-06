@@ -148,6 +148,14 @@ a {
   
 }
 
+.input-wrapper > .show-hide {
+  position: absolute;
+  bottom: 4px;
+  left: 255px;
+  font-size: 10px;
+  color: #707070;
+}
+
 .input-wrapper >
   input:is(:focus, :valid) ~ label {
     bottom: 100%;

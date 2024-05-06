@@ -4,12 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationStart } from '@angular/router';
 import { RegisterModalComponent } from './register-modal.component';
+import { ResetPwModalComponent } from './reset-pw-modal.component';
 import axios from 'axios'; 
 
 @Component({
   selector: 'app-login-modal',
   standalone: true,
-  imports: [FormsModule, CommonModule, RegisterModalComponent],
+  imports: [FormsModule, CommonModule, RegisterModalComponent, ResetPwModalComponent],
   templateUrl: './login-modal.component.html',
   styleUrls: ['./login-modal.component.css']
 })
@@ -17,13 +18,23 @@ export class LoginModalComponent {
   username: string = '';
   password: string = '';
   errorMessage: boolean = false;
+  showPassword: boolean = false;
+  showRegisterModal: boolean = true;
+  showResetPasswordModal: boolean = true;
 
   constructor(public activeModal: NgbActiveModal, private router: Router) {}
 
-  @Input() showRegisterModal: boolean = true;
   
   toggleForm() {
     this.showRegisterModal = !this.showRegisterModal;
+  }
+
+  toggleReset() {
+    this.showResetPasswordModal = !this.showRegisterModal;
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
 
   closeModal() {

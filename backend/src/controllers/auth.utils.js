@@ -1,30 +1,26 @@
 const bcrypt = require('bcrypt');
 
-const saltRounds = 10; 
-/*email, last_name, first_name, username, password, check_password  */
-
+const saltRounds = 10;
 
 exports.validateEmail = (email) => {
-    return email === '';
+    const regex = /\S+@\S+\.\S+/;
+    return regex.test(email);
+};
+  
+exports.validateName = (name) => {
+    const regex = /^[A-Za-z-']+$/;
+    return regex.test(name) && name.length >= 2 && name.length <= 30;
   };
 
-exports.validateName = (name) => {
-    const regex = /^[A-Za-z-]+$/;
-    if (!regex.test(name) || name === '')
-        return false;
-    return true;
-};
-
-// Un minimun de 5lettre
+// Lettres (majuscules et minuscules), chiffres, tirets et underscores autorisés, longueur entre 3 et 20 caractères
 exports.validateUsername = (username) => {
-    return username === '';
+    const regex = /^[a-zA-Z0-9_-]{3,20}$/;
+    return regex.test(username);
 };
 
-
-exports.validateCheck_Password = (check_password, password) => {
-    if(password != check_password)
-        return false;
-    return true;
+exports.validatePassword = (password) => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$/;
+    return passwordRegex.test(password);
 };
 
 exports.hashPassword = (password) => {
@@ -41,9 +37,5 @@ exports.emptyInput = (input) => {
     return input === '';
   };
 
-// Fonction de validation du mot de passe selon la politique
-exports.validatePassword = (password) => {
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()])[A-Za-z\d!@#$%^&*()]{8,}$/;
-    return passwordRegex.test(password);
-  };
+
   
