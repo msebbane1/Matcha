@@ -29,6 +29,7 @@ export class RegisterModalComponent {
   first_name: string = '';
   username: string = '';
   check_password: string = '';
+  errorMessage: boolean = false;
 
 
   closeModal() {
@@ -49,13 +50,20 @@ export class RegisterModalComponent {
       .then(response => {
         console.log(response.data);
         setTimeout(() => {
-          this.router.navigateByUrl('/home');
+          this.router.navigateByUrl('/');
         }, 500);
 
         this.activeModal.dismiss('Close modal');
       })
       .catch(error => {
-        console.error('Erreur lors de la connexion :', error);
+        if(error.response.data.message){
+          this.errorMessage = error.response.data.message;
+          setTimeout(() => {
+            this.errorMessage = false;
+          }, 5000);
+        }
+        else
+          console.error('Erreur lors de la tentative de connexion :', error);
       });
   }
 

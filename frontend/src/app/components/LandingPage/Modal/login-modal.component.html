@@ -1,4 +1,8 @@
 <section>
+  <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible" role="alert">
+    <div>{{ errorMessage }}</div>
+    <button type="button" class="btn-close" (click)="errorMessage = false" aria-label="Close"></button>
+  </div>
   <div class="form_container">
     <!-- Login Form -->
     <div class="form login_form" *ngIf="showRegisterModal">
@@ -8,8 +12,8 @@
           <input type="email" placeholder="Adresse e-mail" [(ngModel)]="email" name="email" required />
         </div> -->
         <div class="input-wrapper">
-          <input id="email" [(ngModel)]="email"  required autocomplete="off"/>
-          <label for="email">Adresse e-mail</label>
+          <input id="username" [(ngModel)]="username"  required autocomplete="off"/>
+          <label for="username">Nom d'utilisateur</label>
           <div class="underline"></div>
         </div>
         <div class="input-wrapper">

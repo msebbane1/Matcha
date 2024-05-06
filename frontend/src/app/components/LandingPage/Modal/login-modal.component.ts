@@ -14,8 +14,9 @@ import axios from 'axios';
   styleUrls: ['./login-modal.component.css']
 })
 export class LoginModalComponent {
-  email: string = '';
+  username: string = '';
   password: string = '';
+  errorMessage: boolean = false;
 
   constructor(public activeModal: NgbActiveModal, private router: Router) {}
 
@@ -31,7 +32,7 @@ export class LoginModalComponent {
 
   onSubmit() {
     const formData = {
-      username: this.email,
+      username: this.username,
       password: this.password
     };
 
@@ -44,7 +45,14 @@ export class LoginModalComponent {
         this.activeModal.dismiss('Close modal');
       })
       .catch(error => {
-        console.error('Erreur lors de la connexion :', error);
+        if(error.response.data.message){
+          this.errorMessage = error.response.data.message;
+          setTimeout(() => {
+            this.errorMessage = false;
+          }, 5000);
+        }
+        else
+          console.error('Erreur lors de la tentative de connexion :', error);
       });
   }
 

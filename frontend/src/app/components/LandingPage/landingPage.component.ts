@@ -4,14 +4,14 @@ import { LoginModalComponent } from './Modal/login-modal.component';
 
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-landingPage',
   standalone: true,
   imports: [],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  templateUrl: './landingPage.component.html',
+  styleUrl: './landingPage.component.css'
 })
 
-export class LoginComponent implements AfterViewInit {
+export class LandingPageComponent implements AfterViewInit {
 
   constructor(private renderer: Renderer2, private el: ElementRef, private modalService: NgbModal) {}
 
@@ -20,6 +20,7 @@ export class LoginComponent implements AfterViewInit {
     modalRef.componentInstance.name = 'World';
   }
 
+  // Animation pour le bouton connection
   ngAfterViewInit(): void {
     document.addEventListener('mousemove', (event) => {
       const moveWithMouse = this.el.nativeElement.querySelector('.move-with-mouse');
