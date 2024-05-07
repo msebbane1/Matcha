@@ -1,6 +1,7 @@
 import { Component, Renderer2, ElementRef, AfterViewInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LoginModalComponent } from './Modal/login-modal.component';
+import { Router, NavigationStart } from '@angular/router';
 
 
 @Component({
@@ -13,13 +14,16 @@ import { LoginModalComponent } from './Modal/login-modal.component';
 
 export class LandingPageComponent implements AfterViewInit {
 
-  constructor(private renderer: Renderer2, private el: ElementRef, private modalService: NgbModal) {}
+  constructor(private renderer: Renderer2, private el: ElementRef, private router: Router, private modalService: NgbModal) {}
 
   openModal() {
     const modalRef = this.modalService.open(LoginModalComponent);
     modalRef.componentInstance.name = 'World';
   }
-
+  /*
+  openModal() {
+    this.router.navigate(['login']);
+  }*/
   // Animation pour le bouton connection
   ngAfterViewInit(): void {
     document.addEventListener('mousemove', (event) => {

@@ -1,8 +1,18 @@
 import { Routes } from '@angular/router';
-import { LandingPageComponent } from './components/LandingPage/landingPage.component';
-import { HomeComponent } from './components/Home/home.component';
+import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [  
-    { path: '', component: LandingPageComponent },
-    { path: 'home', component: HomeComponent },
+    {
+        path: '',
+        loadComponent: () =>
+            import('./components/LandingPage/landingPage.component').then((m) => m.LandingPageComponent),
+    },
+    {
+        path: 'home',
+        loadComponent: () =>
+            import('./components/Home/home.component').then(
+                (m) => m.HomeComponent
+            ),
+        canActivate: [AuthGuard],
+    },
 ];

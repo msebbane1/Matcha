@@ -16,4 +16,19 @@
     https://openclassrooms.com/fr/courses/7471261-debutez-avec-angular/7549291-construisez-votre-premier-component
     https://stackblitz.com/edit/angular-show-hide-password-field?ctl=1&embed=1&file=src/app/app.component.html
     https://angular.fr/forms/ng-model.html
+
+
+
+    authGuard :
+
+    https://www.geeksforgeeks.org/how-to-use-authguard-for-angular-17-routes/
+
+    https://medium.com/@jaydeepvpatil225/auth-guards-in-angular-6960950b3c6c
+
+    Routes :
+
+    https://stackoverflow.com/questions/77750111/how-can-define-router-guard-in-standalone-components-in-angular
     
+    Manipuler chaine de charatere en JS :
+
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions
