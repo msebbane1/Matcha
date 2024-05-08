@@ -1,4 +1,5 @@
 const authUtils = require('./auth.utils');
+const User = require('../models/User');
 // LOGIN
 
 exports.login = (req, res) => {
@@ -24,39 +25,57 @@ exports.login = (req, res) => {
 
 // REGISTER
 
-exports.register = (req, res) => {
+exports.register = async (req, res) => {
     const { email, last_name, first_name, username, password, check_password } = req.body;
-    const hashedPassword = authUtils.hashPassword(password);
 
-   /* if (authUtils.emptyInput(username) || authUtils.emptyInput(last_name) || authUtils.emptyInput(first_name) || authUtils.emptyInput(email) || authUtils.emptyInput(password)) {
-       return res.status(401).json({ success: false, message: 'Veuillez saisir toutes les informations manquantes' });
-    }*/
-    
-    if (!authUtils.validateEmail(email)) {
-      return res.status(401).json({ success: false, message: 'Veuillez saisir une adresse e-mail valide.' });
-    }
-    if (!authUtils.validateName(last_name) || !authUtils.validateName(first_name)) {
-      return res.status(401).json({ success: false, message: 'Veuillez saisir un Nom/Prenom valide.' });
-    }
+    try {
 
-    if (!authUtils.validateUsername(username)) {
-      return res.status(401).json({ success: false, message: 'Veuillez saisir un Nom d\'utilisateur valide.' });
-    }
-    
-    if (!authUtils.validatePassword(password)) {
-      return res.status(401).json({ success: false, message: 'Votre mot de passe doit avoir au moins 8 caractères et inclure des caractères spéciaux, au moins un chiffre, une lettre majuscule et une lettre minuscule.' });
-    }
+      const existingUserEmail = await User.findOne({ where: { email } });
+      const existingUserUsername = await User.findOne({ where: { username } });
+  
+      // Email
+      if (existingUserEmail) {
+        return res.status(409).json({ success: false, message: 'Cet adresse E-mail existe déjà' });
+      }
+      if (!authUtils.validateEmail(email)) {
+        return res.status(401).json({ success: false, message: 'Veuillez saisir une adresse e-mail valide.' });
+      }
 
-    if (check_password !== password) {
-      return res.status(401).json({ success: false, message: 'Les mots de passe ne correspondent pas' });
-    }
-    
-    if (!hashedPassword) {
-      return res.status(500).json({ success: false, message: 'Erreur lors du hachage du mot de passe' });
-    }
+      // Name
+      if (!authUtils.validateName(last_name) || !authUtils.validateName(first_name)) {
+        return res.status(401).json({ success: false, message: 'Veuillez saisir un Nom/Prenom valide.' });
+      }
 
-  // Creer dans la base de données et verfiier si l'user n'existe pas deja ?
-    else {
-      res.json({ success: true, message: 'Creation du compte réussie' });
-    }
+      // Username
+      if (existingUserUsername) {
+        return res.status(409).json({ success: false, message: 'Cet utilisateur existe déjà' });
+      }
+      if (!authUtils.validateUsername(username)) {
+        return res.status(401).json({ success: false, message: 'Veuillez saisir un Nom d\'utilisateur valide.' });
+      }
+      
+      // Password
+      if (!authUtils.validatePassword(password)) {
+        return res.status(401).json({ success: false, message: 'Votre mot de passe doit avoir au moins 8 caractères et inclure des caractères spéciaux, au moins un chiffre, une lettre majuscule et une lettre minuscule.' });
+      }
+      if (check_password !== password) {
+        return res.status(401).json({ success: false, message: 'Les mots de passe ne correspondent pas' });
+      }
+
+      const hashedPassword = authUtils.hashPassword(password);
+
+      if (!hashedPassword) {
+        return res.status(500).json({ success: false, message: 'Erreur lors du hachage du mot de passe' });
+      }
+
+      /*password = hashedPassword;*/
+
+      await User.create({ username, email, password }); // a modifier pour le password
+  
+      res.json({ success: true, username: username, email: email, message: 'Création du compte réussie' });
+
+  } catch (error) {
+    console.error('Erreur lors de l\'inscription:', error);
+    res.status(500).json({ success: false, message: 'Une erreur est survenue lors de la création du compte' });
+  }
 };

@@ -1,0 +1,30 @@
+{
+  "models": {
+    "path": "./src/models",
+    "options": {
+      "timestamps": true
+    }
+  },  
+  "development": {
+    "username": "msebbane",
+    "password": "pass",
+    "database": "dbmatcha",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "msebbane",
+    "password": "pass",
+    "database": "dbmatcha",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "msebbane",
+    "password": "pass",
+    "database": "dbmatcha",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
+
