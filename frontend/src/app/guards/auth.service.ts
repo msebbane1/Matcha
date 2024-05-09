@@ -20,7 +20,7 @@ export class AuthService {
       axios.post<any>('https://localhost:8080/auth/login', formData)
         .then(response => {
           if (response.data) {
-            localStorage.setItem('token', response.data);
+            localStorage.setItem('token', response.data); //recuperer token ici aussi
             this.isAuth.next(true);
             observer.next(true);
           } else {
@@ -34,6 +34,35 @@ export class AuthService {
         });
     });
   }
+
+  verifyAccount(verificationId: string): Observable<boolean> {
+    return new Observable<boolean>((observer) => {
+      axios.get<boolean>(`https://localhost:8080/auth/verify-account/${verificationId}`)
+        .then(response => {
+          observer.next(response.data);
+          observer.complete();
+        })
+        .catch(error => {
+          console.error('Erreur lors de la vérification du compte :', error.response);
+          observer.error(false);
+        });
+    });
+  }
+
+
+  /*verifyAccount(verificationId: string): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      axios.get<boolean>(`https://localhost:8080/auth/verify-account/${verificationId}`)
+        .then(response => {
+          resolve(response.data);
+        })
+        .catch(error => {
+          console.error('Erreur lors de la vérification du compte :', error);
+          reject(false);
+        });
+    });
+  }*/
+
 
   logout(): void {
     localStorage.removeItem('token');

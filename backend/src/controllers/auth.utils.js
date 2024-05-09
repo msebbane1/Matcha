@@ -33,6 +33,16 @@ exports.hashPassword = (password) => {
     }
   };
 
+exports.comparePasswords = (password, hashedPassword) => {
+    try {
+      return bcrypt.compareSync(password, hashedPassword);
+    } catch (error) {
+      console.error('Erreur lors de la comparaison des mots de passe :', error);
+      return false;
+    }
+  };
+  
+
 exports.emptyInput = (input) => {
     return input === '';
   };

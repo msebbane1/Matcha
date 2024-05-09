@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
+import { VerificationAccountComponent } from './components/VerifyAccount/verification-account.component';
 
 export const routes: Routes = [  
     {
@@ -15,4 +16,5 @@ export const routes: Routes = [
             ),
         canActivate: [AuthGuard],
     },
+    { path: 'verification-account/:verificationId', component: VerificationAccountComponent },
 ];

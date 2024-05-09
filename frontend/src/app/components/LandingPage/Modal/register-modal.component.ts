@@ -55,6 +55,7 @@ export class RegisterModalComponent {
     axios.post<any>('https://localhost:8080/auth/register', formData)
       .then(response => {
         console.log(response.data);
+        localStorage.setItem('dataUser', response.data);
         this.successMessage = response.data.message;
           setTimeout(() => {
             this.errorMessage = false;
