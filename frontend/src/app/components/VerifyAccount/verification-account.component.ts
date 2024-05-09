@@ -18,10 +18,8 @@ export class VerificationAccountComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.verificationId = params['verificationId'];
-      // Appeler la méthode de vérification du compte dans le service AuthService
       this.authService.verifyAccount(this.verificationId).subscribe(
         result => {
-          // Gérer le résultat de la vérification
           if (true) {
             console.log("success test");
           } else {
@@ -29,9 +27,7 @@ export class VerificationAccountComponent implements OnInit {
           }
         },
         error => {
-          // Gérer les erreurs de vérification
           console.error('Erreur lors de la vérification du compte :', error);
-          // Afficher un message d'erreur à l'utilisateur
         }
       );
     });

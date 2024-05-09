@@ -13,6 +13,10 @@ export class AuthService {
     this.isAuth = new BehaviorSubject<boolean>(false);
   }
 
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
 
   login(username: string, password: string): Observable<boolean> {
     const formData = { username, password };

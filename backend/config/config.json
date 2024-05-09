@@ -9,21 +9,21 @@
     "username": "msebbane",
     "password": "pass",
     "database": "dbmatcha",
-    "host": "localhost",
+    "host": "postgres",
     "dialect": "postgres"
   },
   "test": {
     "username": "msebbane",
     "password": "pass",
     "database": "dbmatcha",
-    "host": "localhost",
+    "host": "postgres",
     "dialect": "postgres"
   },
   "production": {
     "username": "msebbane",
     "password": "pass",
     "database": "dbmatcha",
-    "host": "localhost",
+    "host": "postgres",
     "dialect": "postgres"
   }
 }

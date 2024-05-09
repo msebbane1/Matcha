@@ -104,7 +104,7 @@ exports.register = async (req, res) => {
 
 //////////////////////////////////// CHECK VERIFICATION LINK ///////////////////////////////////////////
 exports.verifyAccount = async (req, res) => {
-  const { verificationId } = req.body;
+  const { verificationId } = req.params;
 
   try {
     const isVerified = await authVerifyAccount.verifyAccount(verificationId);

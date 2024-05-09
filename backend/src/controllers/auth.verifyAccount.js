@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 const { v4: uuidv4 } = require('uuid');
+require('dotenv').config();
 const User = require('../models/User');
 
 // CONFIRMATION/ENVOI MAIL
@@ -20,13 +21,13 @@ exports.sendVerificationEmail = async (email, verificationLink) => {
     port: 465,
     secure: true, // true pour utiliser TLS (port 465), false pour utiliser STARTTLS (port 587)
     auth: {
-      user: 'verifyMatcha@gmail.com', // Nom d'utilisateur SMTP
-      pass: 'huel kkxm uozm hbsc' // Mot de passe APP Google SMTP
+      user: process.env.SMTP_EMAIL,
+      pass: process.env.SMTP_PASSWORD
     }
   });
 
     const mailOptions = {
-      from: 'verifyMatcha@gmail.com',
+      from: process.env.SMTP_EMAIL,
       to: email,
       subject: 'Vérification de votre compte Matcha',
       html: `<p>Merci de vous être inscrit sur notre site de rencontre Matcha ! Veuillez cliquer sur le lien suivant pour vérifier votre compte : <a href="${verificationLink}">${verificationLink}</a></p>`

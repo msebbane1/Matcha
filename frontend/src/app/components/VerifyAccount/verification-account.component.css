@@ -1,0 +1,40 @@
+.background-image {
+    background: linear-gradient(45deg, #8A2BE2, #FF69B4, #FFD700);
+    background-size: 600% 600%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    position: relative;
+    display: grid;
+    place-items: center;
+    animation: gradientAnimation 20s ease infinite;
+  }
+  
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .container {
+    display: grid;
+    text-align: center;
+    place-items: center;
+  }
+  
+  .image-class {
+    width: 144px;
+    height: auto;
+    margin-top: -88px;
+  }
+
+  .title-text-logo {
+    font-family: 'Grace', sans-serif;
+    font-size: 2em;
+    color: white;
+  }
