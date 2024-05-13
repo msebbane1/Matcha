@@ -14,7 +14,6 @@ exports.saveVerificationLinkId = async (userId, verificationLink) => {
     await User.update({ verificationLink }, { where: { id: userId } });
 };
   
-// A METTRE DANS .ENV
 exports.sendVerificationEmail = async (email, verificationLink) => {
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',

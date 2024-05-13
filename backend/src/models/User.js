@@ -15,6 +15,14 @@ const User = sequelize.define('User', {
       isEmail: true
     }
   },
+  first_name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  last_name: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
   password: {
     type: DataTypes.TEXT,
     allowNull: false
@@ -31,3 +39,5 @@ const User = sequelize.define('User', {
 });
 
 module.exports = User;
+
+// CREER QUERY a la main et ajouter nom et prenom

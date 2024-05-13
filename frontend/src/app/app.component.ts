@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LandingPageComponent } from './components/LandingPage/landingPage.component';
 import { HomeComponent } from './components/Home/home.component';
-import { LoginModalComponent } from './components/LandingPage/Modal/login-modal.component';
+import { LoginModalComponent } from './components/Auth/login-modal.component';
 
 // Composant principal qui affiche tous les composants + RouterOutlet pour les redirections
 @Component({

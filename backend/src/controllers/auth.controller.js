@@ -1,30 +1,41 @@
 const authUtils = require('./auth.utils');
 const authVerifyAccount = require('./auth.verifyAccount');
+const authJwt = require('./auth.jwt');
 const User = require('../models/User');
 
 //////////////////////////////////////////// LOGIN /////////////////////////////////////
 exports.login = async (req, res) => {
   const { username, password } = req.body;
 
-  if (!username || !password) {
-    return res.status(401).json({ success: false, message: 'Veuillez saisir un nom d\'utilisateur et un mot de passe' });
-  }
-
   try {
     const user = await User.findOne({ where: { username } });
 
-    if (!user) {
-      return res.status(401).json({ success: false, message: 'Le nom d\'utilisateur est incorrect' });
+    if (!user || !username) {
+      return res.status(401).json({ success: false, message: 'Le nom d\'utilisateur n\'existe pas' });
     }
 
-    // Comparer les mots de passe hachés
     const passwordMatch = authUtils.comparePasswords(password, user.password);
 
-    if (!passwordMatch) {
+    if (!passwordMatch || !password) {
       return res.status(401).json({ success: false, message: 'Le mot de passe est incorrect' });
     }
+    else {
 
-    res.json({ success: true, message: 'Authentification réussie', user });
+      const tokenJwt = authJwt.generatetokenjwt({userId: user.id, userUsername: user.username})
+
+      res.json({ success: true, 
+                 message: 'Authentification réussie',
+                 token: tokenJwt,
+                 userInfo: {
+                  username: user.username,
+                  id: user.id,
+                  email: user.email,
+                  first_name: user.first_name,
+                  last_name: user.last_name,
+                  verified: user.verified
+                 }});
+    }
+
   } catch (error) {
     console.error('Erreur lors de la connexion:', error);
     res.status(500).json({ success: false, message: 'Une erreur est survenue lors de l\'authentification' });
@@ -83,17 +94,26 @@ exports.register = async (req, res) => {
         return res.status(500).json({ success: false, message: 'Erreur lors du hachage du mot de passe' });
       }
 
-      /*password = hashedPassword;*/
-        const user = await User.create({ username, email, password: hashedPassword }); // a modifier pour le password
-        
+      else {
+
         const verificationId = authVerifyAccount.generateVerificationLink();
         const verificationLink = `https://localhost:4200/verification-account/${verificationId}`
 
-        await authVerifyAccount.saveVerificationLinkId(user.id, verificationId);
-
+       // await authVerifyAccount.saveVerificationLinkId(user.id, verificationId);
         await authVerifyAccount.sendVerificationEmail(email, verificationLink);
 
-        res.json({ success: true, username: username, email: email, first_name: first_name, last_name: last_name, message: 'Création du compte réussie' });
+        const user = await User.create(
+          { username: username, 
+            email: email, 
+            password: hashedPassword,
+            verificationLink: verificationId, 
+            first_name: first_name, 
+            last_name: last_name 
+          });
+        await user.save();
+
+        res.json({ success: true, message: 'Création du compte réussie, veuillez vous connecter! Un lien a été envoyé sur votre e-mail afin de completer votre inscription' });
+      }
 
   } catch (error) {
     console.error('Erreur lors de l\'inscription:', error);

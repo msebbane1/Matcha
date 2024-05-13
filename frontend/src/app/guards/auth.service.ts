@@ -13,10 +13,14 @@ export class AuthService {
     this.isAuth = new BehaviorSubject<boolean>(false);
   }
 
-  isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
+  logout(): void {
+    localStorage.removeItem('token');
+    this.isAuth.next(false);
   }
 
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
 
   login(username: string, password: string): Observable<boolean> {
     const formData = { username, password };
@@ -24,7 +28,21 @@ export class AuthService {
       axios.post<any>('https://localhost:8080/auth/login', formData)
         .then(response => {
           if (response.data) {
-            localStorage.setItem('token', response.data); //recuperer token ici aussi
+
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('userInfo', JSON.stringify(response.data.userInfo));
+
+            const user = localStorage.getItem('userInfo');
+
+            if (user) {
+              const userInfoParse = JSON.parse(user);
+              console.log("token: ", localStorage.getItem('token'));
+              console.log("UserInfo: ", localStorage.getItem('userInfo'));
+              console.log("test INFO: ", response.data.userInfo);
+              console.log("User email: ", userInfoParse.email);
+              console.log("User lastname: ", userInfoParse.last_name);
+            }
+            
             this.isAuth.next(true);
             observer.next(true);
           } else {
@@ -66,16 +84,6 @@ export class AuthService {
         });
     });
   }*/
-
-
-  logout(): void {
-    localStorage.removeItem('token');
-    this.isAuth.next(false);
-  }
-
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
-  }
 
   getLoggedInSubject(): Observable<boolean> {
     return this.isAuth.asObservable();

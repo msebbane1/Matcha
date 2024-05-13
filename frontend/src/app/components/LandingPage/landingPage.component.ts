@@ -1,6 +1,6 @@
 import { Component, Renderer2, ElementRef, AfterViewInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { LoginModalComponent } from './Modal/login-modal.component';
+import { LoginModalComponent } from '../Auth/login-modal.component';
 import { Router, NavigationStart } from '@angular/router';
 
 

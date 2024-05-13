@@ -6,8 +6,8 @@ import { CommonModule } from '@angular/common';
 import { Router, NavigationStart } from '@angular/router';
 import { RegisterModalComponent } from './register-modal.component';
 import { ResetPwModalComponent } from './reset-pw-modal.component';
-import { AuthService } from '../../../guards/auth.service';
-import axios from 'axios'; 
+import { AuthService } from '../../guards/auth.service';
+
 
 @Component({
   selector: 'app-login-modal',
@@ -43,33 +43,6 @@ export class LoginModalComponent {
     this.activeModal.dismiss('Cross click');
   }
 
-  /*
-  onSubmit() {
-    const formData = {
-      username: this.username,
-      password: this.password
-    };
-
-    axios.post<any>('https://localhost:8080/auth/login', formData)
-      .then(response => {
-        console.log(response.data);
-        setTimeout(() => {
-          this.router.navigateByUrl('/home');
-        }, 500);
-        this.activeModal.dismiss('Close modal');
-      })
-      .catch(error => {
-        if(error.response.data.message){
-          this.errorMessage = error.response.data.message;
-          setTimeout(() => {
-            this.errorMessage = false;
-          }, 5000);
-        }
-        else
-          console.error('Erreur lors de la tentative de connexion :', error);
-      });
-  }*/
-
   onSubmit() {
     this.authService.login(this.username, this.password)
       .subscribe((loggedIn: boolean) => {
@@ -95,7 +68,7 @@ export class LoginModalComponent {
 }
 
 /*
-
+TEST
 export class HomeComponent implements OnInit {
 
   loginForm: FormGroup;
