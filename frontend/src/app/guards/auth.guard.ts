@@ -6,38 +6,21 @@ export const AuthGuard: CanActivateFn = (route, state) => {
     const authService = inject(AuthService);
     const router = inject(Router);
 
-    if (authService.isAuth.value == false) {
-        router.navigate(['/']);
-        return false;
+    if (!authService.isLoggedIn()) {
+      router.navigate(['/']);
+      return false;
     }
-
-    return authService.isAuth.value;
+    return true;
+  
 };
 
 export const PublicGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
-    if (authService.isLoggedIn()) {
-      router.navigateByUrl('/home');
-      return false;
-    } else {
-      return true; 
+  if (authService.isLoggedIn()) {
+    router.navigate(['/home']);
+    return false;
   }
+  return true;
 };
-
-/* OU a verifier par token via LoggedIn() a tester avec un logout pour les 2maniere ??
-
- constructor(private authService: AuthService, private router: Router) {}
-
-  canActivate(): boolean {
-    if (this.authService.isLoggedIn()) {
-      return true;
-    } else {
-      this.router.navigate(['/']);
-      return false;
-    }
-  }
-}
-
-*/

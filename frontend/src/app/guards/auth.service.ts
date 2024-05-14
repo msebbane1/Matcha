@@ -15,10 +15,19 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
+    console.log("token logout: ", localStorage.getItem('token'));
     this.isAuth.next(false);
+    this.router.navigate(['/']);
   }
 
   isLoggedIn(): boolean {
+    const user = localStorage.getItem('userInfo');
+
+    if (user) {
+      const userInfoParse = JSON.parse(user);
+      console.log("User Session : username: ", userInfoParse.username);
+    }
+    console.log("token login: ", !!localStorage.getItem('token'));
     return !!localStorage.getItem('token');
   }
 
@@ -84,8 +93,13 @@ export class AuthService {
         });
     });
   }*/
-
-  getLoggedInSubject(): Observable<boolean> {
-    return this.isAuth.asObservable();
-  }
+  /* //A TESTER si c'est mieux ? 
+  isAuthObservable(): boolean {
+    if(localStorage.getItem('token')){
+      this.isAuth == true;
+      return true;
+    }
+    else
+      return false
+  } */
 }

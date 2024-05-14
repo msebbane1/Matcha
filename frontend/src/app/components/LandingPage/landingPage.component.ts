@@ -16,6 +16,8 @@ export class LandingPageComponent implements AfterViewInit {
 
   constructor(private renderer: Renderer2, private el: ElementRef, private router: Router, private modalService: NgbModal) {}
 
+  showNavbar = false;
+  
   openModal() {
     const modalRef = this.modalService.open(LoginModalComponent);
     modalRef.componentInstance.name = 'World';

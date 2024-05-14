@@ -4,12 +4,13 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LandingPageComponent } from './components/LandingPage/landingPage.component';
 import { HomeComponent } from './components/Home/home.component';
 import { LoginModalComponent } from './components/Auth/login-modal.component';
+import { NavbarComponent } from './components/Navbar/navbar.component';
 
 // Composant principal qui affiche tous les composants + RouterOutlet pour les redirections
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LandingPageComponent, LoginModalComponent, HomeComponent],
+  imports: [RouterOutlet, LandingPageComponent, LoginModalComponent, HomeComponent, NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

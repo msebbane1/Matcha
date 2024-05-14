@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-transparent" [ngClass]="{ 'hide-navbar': !showNavbar }">
+  <div class="container container-nav">
+    <img src="assets/mug5.png" class="img-class">
+    <p class="title-text-logo" href="/home">Matcha</p>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="pos-f-t">
+  <div class="collapse" id="navbarToggleExternalContent">
+    <div class="bg-dark p-4">
+      <h4 class="text-white">Collapsed content</h4>
+      <span class="text-muted">Toggleable via the navbar brand.</span>
+    </div>
+  </div>
+  <nav class="navbar navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
+</div>
+    
+
+    <ul class="navbar-nav nav-elements-link">
+      <li class="nav-item">
+        <a class="nav-link" href="/home">
+          <span class="nav-text">Profil</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/home">
+          <span class="nav-text">Chat</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/home">
+          <span class="nav-text">Historique</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/home">
+          <span class="nav-text">Paramètre</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="logout()">
+          <span class="nav-text">LOGOUT</span>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</nav>
+
+
