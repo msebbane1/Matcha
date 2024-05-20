@@ -30,17 +30,17 @@ Lancement
 
 # 2. MANDATORY PART
 
-IV.1 Registration and Signing-in :
+IV.1 Registration and Signing-in (M):
 
-    • Register : E-mail, username, last name, first name, password (protected)
+    - [x] Register : E-mail, username, last name, first name, password (protected)
 
-    • After Registration : an email with a unique link is send to the user to verify their account
+    - [x] After Registration : an email with a unique link is send to the user to verify their account
 
     • Login : Username and password and reset password with email (if they forget it)
 
-    • Log out : with just one click from any page on the site
+    - [x] Log out : with just one click from any page on the site
 
-IV.2 User profile :
+IV.2 User profile (C):
 
     • For first connection user must provide :
     The gender, Sexual preferences, A biography, A list of interests with tags, Up to 5 pictures(including a profile picture)
@@ -53,7 +53,7 @@ IV.2 User profile :
 
     • GPS positioning : Choose to be positioned or not, if not must find a way to locate them
 
-IV.3 Browsing - list of suggestions that match their profile -
+IV.3 Browsing - list of suggestions that match their profile (M) -
 
     • Proposition of “interesting” profiles : only men for a hetero-sexual girls. If the user’s orientation isn’t specified is bisexual.
 

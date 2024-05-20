@@ -1,31 +1,204 @@
-.container-navbar {
+/*
+main {
+  padding-top: 100px;
+}*/
+html {
+  position: relative;
+  min-height: 100%;
+}
+/*
+body {
+  margin-bottom: 50px;
+}*/
+/* a changer */
+footer {
   position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px; 
+  background-color: #f5f5f5;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.flex-item {
+  background-color: white;
+  border-radius: 5%;
+  display: flex;
+  height: 400px;
+  justify-content: center;
+  flex-grow: 1;
+  flex-basis: 300px;
+  font-size: 64px;
+  flex-direction: column;
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.flex-item img {
+ /* max-width: 280px;*/
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+@media (width <= 740px){
+  .flex-item img {
+   /* margin: -100px 0 30px;*/
+    max-width: 1000px;
+    width: 100%;
+    /*margin-bottom: 40px;*/
+  }
+  
+}
+
+
+
+/* PROFILE BUTTON */
+.profile-button {
+  position: absolute;
+  top: 145px; 
+  right: 95px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
+.profile-button img.profile-icon {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.profile-button:hover img.profile-icon {
+  transform: scale(1.1);
+}
+
+/* LOVE BUTTON */
+
+.heart-button {
+  position: absolute;
+  top: 145px; 
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
+.heart-button img.heart-icon {
+  width: 70px;
+  height: 70px;
+  transition: transform 0.3s ease;
+}
+
+.heart-button:hover img.heart-icon {
+  width: 70px;
+  height: 70px;
+  transform: scale(1.1);
+}
+
+.heart-button:hover img.heart-icon:hover {
+  content: url('/assets/love-button.png');
+}
+
+/* TEXTE BOX */
+.text-container {
+  height: 50%;
+  padding: 18px;
+}
+
+.flex-item .text-container h2 {
+  color: black;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+
+.flex-item .text-container h3 {
+  color: black;
+  text-align: left;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.text-container h1 {
+  color: grey;
+  font-size: 15px;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+
+.fixed-header {
+  position: fixed;
+  top: 20px;
+}
+
+
+.search-button {
+  background-color: transparent;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 50px; 
+  border: 3px solid white; 
+  box-shadow: 0px 20px 100px rgba(0, 0, 0, 0.2);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  font-family: sans-serif;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+  grid-column: 1;
+  margin-top: 20px;
+ /* box-shadow: 0 0.4rem 0 0 #e9b3d5;
+  transition: all 0.3s;
+  height: 3.5rem;
+  padding: 0 2rem;*/
+}
+
+
+.container-navbar {
+
   top: 0;
   left: 0;
   width: 100%;
   z-index: 100;
 }
 
-.container-rect {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 1000px;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5));
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  padding: 40px;
-}
 
-
-.content {
-  text-align: center;
-}
 
 
 .background-image {
+  background-color: white;
+  background-repeat: repeat; 
+  background-size: auto; 
+  background-attachment: fixed;
+  height: 100vh; 
+}
+
+
+
+.background-image3 {
+  background-image: url('/assets/tt.png');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
+.background-image2 {
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/assets/74.jpg');
   background-repeat: no-repeat;
   background-color: #0006;
@@ -74,40 +247,19 @@
   }
 }
 
-.btn-outline-pink:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.btn-lg {
-  padding: 0.75rem 1.5rem;
-  font-size: 1.25rem;
-}
-.btn-outline-pink {
-  border-color: white !important; /* Ajoutez une bordure blanche au bouton */
-}
-
-.btn-outline-pink:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Couleur de fond légèrement blanche avec transparence au survol */
-}
-
-.btn-outline-pink:focus {
-  box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.25); /* Ajoute une ombre lorsque le bouton est en focus */
-}
-
-#myButton {
-  color: pink; /* Change la couleur du texte du bouton en rose */
-}
 
 
 
-.container {
+
+.container2 {
   display: grid;
   text-align: center;
   place-items: center;
-}
-
-.image-class {
-  width: 144px;
-  height: auto;
-  margin-top: -88px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/assets/67.jpg');
+  background-repeat: no-repeat;
+  background-color: #0006;
+  height: 24vh;
+  background-size: cover;
+  margin-bottom: 50px;
+  background-position: left;
 }

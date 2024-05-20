@@ -10,4 +10,14 @@ import { NavbarComponent } from '../Navbar/navbar.component';
 })
 export class HomeComponent {
 
+  isHeartClicked: boolean = false;
+
+  get heartIconSrc(): string {
+    return this.isHeartClicked ? "/assets/love-button.png" : "/assets/love-button2.png";
+  }
+
+  toggleHeartIcon(): void {
+    this.isHeartClicked = !this.isHeartClicked;
+  }
+
 }
