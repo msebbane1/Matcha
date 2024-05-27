@@ -1,4 +1,4 @@
-/* FONT */
+/* FONTS */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 * {
   margin: 0;
@@ -22,12 +22,14 @@ a {
   box-sizing: border-box;
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
 
 .nav {
   height: 100px;
   width: 100%;
   background-color: rgba(0, 0, 0, 0.878);
-  backdrop-filter: blur(20px);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -71,6 +73,11 @@ a {
   display: none;
 }
 
+@media (max-width >= 800px) {
+  .nav{
+    backdrop-filter: blur(20px);
+  }
+}
 @media (max-width: 800px) {
   .nav{
     position: fixed;

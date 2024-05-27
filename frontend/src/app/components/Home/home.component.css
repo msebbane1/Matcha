@@ -30,14 +30,13 @@ header {
 
 @media (min-width: 1200px) {
   .container2 {
-    background-position: 0 -190px; /* Ajustez les valeurs selon vos besoins */
+    background-position: 0 -190px;
   }
 }
 
-/* Pour les écrans de 740 pixels de largeur ou moins */
 @media (max-width: 740px) {
   .container2 {
-    background-position: center -40px; /* Ajustez les valeurs selon vos besoins */
+    background-position: center -140px;
     background-attachment: fixed;
   }
 }
@@ -298,9 +297,6 @@ html {
   top: 20px;
 }
 
-
-
-
 .container-navbar {
 
   top: 0;
@@ -311,7 +307,7 @@ html {
 
 
 
-
+/* BACKGROUND IMAGE TEST
 .background-image {
   background-color: white;
   background-repeat: repeat; 
@@ -319,8 +315,6 @@ html {
   background-attachment: fixed;
   height: 100vh; 
 }
-
-
 
 .background-image3 {
   background-image: url('/assets/tt.png');
@@ -345,7 +339,6 @@ html {
 @media screen and (max-width: 576px) {
   .background-image {
     height: 100vh;
-   /* background-image: url('/assets/65.jpg');*/
   }
 }
 .background-image3 {
@@ -376,7 +369,7 @@ html {
   100% {
     background-position: 0% 50%;
   }
-}
+} */
 
 
 
