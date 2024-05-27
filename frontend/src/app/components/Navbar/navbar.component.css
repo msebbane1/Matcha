@@ -1,4 +1,4 @@
-/* Import Google font - Poppins */
+/* FONT */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 * {
   margin: 0;
@@ -17,24 +17,131 @@ a {
   font-style: normal;
 }
 
+
+* {
+  box-sizing: border-box;
+}
+
+
+.nav {
+  height: 100px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.878);
+  backdrop-filter: blur(20px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  position: fixed;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.nav-header {
+  display: flex;
+}
+
+.nav-title {
+  font-size: 22px;
+  color: #fff;
+  padding: 10px 10px 10px 0;
+}
+
+.nav-btn {
+  display: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+  font-size: 18px;
+}
+
+.nav-links > a {
+  padding: 13px 10px;
+  text-decoration: none;
+  color: #efefef;
+}
+
+.nav-links > a:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#nav-check {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .nav{
+    position: fixed;
+    z-index: 1000;
+    overflow: hidden;
+  }
+  .nav-btn {
+    display: flex;
+    align-items: center;
+  }
+  .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  .nav-btn > label:hover,
+  #nav-check:checked ~ .nav-btn > label {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: #eee;
+    margin: 5px 0;
+  }
+  .nav-links {
+    position: absolute;
+    text-align: center;
+    display: block;
+    width: 100%;
+    background-color: black;
+    height: 0;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 80px;
+    left: 0;
+    flex-direction: column;
+    gap: 0;
+    position: fixed;
+    z-index: 1000;
+    overflow: hidden;
+  }
+  .nav-links > a {
+    width: 100%;
+  }
+  #nav-check:not(:checked) ~ .nav-links {
+    height: 0;
+  }
+  #nav-check:checked ~ .nav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+}
+
+
+
+
 .hide-navbar {
   display: none;
 }
 
-.container-nav {
-  margin-top: 20px;
-  margin-bottom: 10px;
 
-}
 
 .title-text-logo {
   font-family: 'Grace', sans-serif;
   font-size: 2.5em;
-  margin-left: 59px;
   color: white;
-  grid-row: 1;
   user-select: none;
-  grid-column: 1;
+  margin-left: -130px;
 }
 
 
@@ -46,13 +153,7 @@ a {
   grid-column: 2;
 }
 
-.img-class {
-  width: 45px;
-  margin-left: 110%;
-  margin-bottom: 22px;
-  grid-row: 1;
-  grid-column: 1;
-}
+
 
 
 .nav-elements-link .nav-text {
@@ -101,15 +202,10 @@ a {
   }
 }
 
-.container {
-  display: grid;
-  text-align: center;
-  place-items: center;
-  background-color: black;
-}
 
-.image-class {
-  width: 144px;
-  height: auto;
-  margin-top: -88px;
+
+.img-class {
+  width: 45px;
+  margin-left: 104px;
+  margin-bottom: 22px;
 }
