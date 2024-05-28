@@ -42,7 +42,7 @@ export class AuthService {
             localStorage.setItem('userInfo', JSON.stringify(response.data.userInfo));
 
             const user = localStorage.getItem('userInfo');
-
+            /*
             if (user) {
               const userInfoParse = JSON.parse(user);
               console.log("token: ", localStorage.getItem('token'));
@@ -50,7 +50,8 @@ export class AuthService {
               console.log("test INFO: ", response.data.userInfo);
               console.log("User email: ", userInfoParse.email);
               console.log("User lastname: ", userInfoParse.last_name);
-            }
+              console.log("TAG TEST NAME: ", userInfoParse.test_tag);
+            }*/
             
             this.isAuth.next(true);
             observer.next(true);

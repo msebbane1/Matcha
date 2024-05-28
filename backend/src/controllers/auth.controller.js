@@ -30,6 +30,7 @@ exports.login = async (req, res) => {
                   username: user.username,
                   id: user.id,
                   email: user.email,
+                  test_tag: user.first_name, //TEST
                   first_name: user.first_name,
                   last_name: user.last_name,
                   verified: user.verified

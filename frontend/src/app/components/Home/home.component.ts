@@ -4,6 +4,7 @@ import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { UserService, User } from '../../guards/user.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,23 @@ import { CommonModule } from '@angular/common';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent  {
+export class HomeComponent implements OnInit {
+  users: User[] = [];
+  filteredUsers: User[] = []; 
+
+  constructor(private userService: UserService) { }
+
+  ngOnInit() {
+    this.userService.getAllUsers().subscribe(
+      users => {
+        this.users = users;
+        this.filteredUsers = this.users;
+      },
+      error => {
+        console.error('Erreur lors de la récupération des utilisateurs', error);
+      }
+    );
+  }
 
   showDropdown = false;
   searchQuery = '';
@@ -36,14 +53,16 @@ export class HomeComponent  {
     this.autocompleteOptions = [];
   }
 
+  sortByFirstName() {
+    this.filteredUsers.sort((a, b) => a.first_name.localeCompare(b.first_name));
+  }
+
   search() {
-    // Ici, vous pouvez ajouter la logique de recherche en fonction de la valeur de searchQuery
     console.log('Recherche effectuée avec la requête :', this.searchQuery);
-    
-    // Par exemple, vous pouvez effectuer une action de recherche en fonction de la valeur de searchQuery
-    // this.serviceDeRecherche.rechercher(this.searchQuery).subscribe(resultats => {
-    //   // Gérer les résultats de la recherche
-    // });
+    if (this.searchQuery === 'Tags') {
+      console.log('search :', this.searchQuery);
+      this.sortByFirstName();
+    }
   }
 
   isHeartClicked: boolean = false;

@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth.routes');
+const userRoutes = require('./routes/user.routes');
 const cors = require('cors');
 const pool = require('./db');
 
@@ -12,6 +13,7 @@ app.use(bodyParser.json());
 
 // Routes a mettre ici
 app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
 
 app.get('/', (req, res) => {
   pool.query('SELECT NOW()', (err, result) => {

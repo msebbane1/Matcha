@@ -34,26 +34,27 @@
   </section>
 
 
-  <div class="container " style="margin-bottom: 20px;">
-    <div class="flex-item ">
+  <div class="container" style="margin-bottom: 20px;">
+    <div class="flex-item" *ngFor="let user of users" >
       <img src="/assets/pictures/t.jpg" />
       <button class="heart-button" (click)="toggleHeartIcon()">
         <img [src]="heartIconSrc" class="heart-icon" />
-    </button>
-    <a href="/home">
-      <button class="profile-button">
-          <img src="/assets/see-profile3.png" class="profile-icon"/>
       </button>
-    </a>
-      <div class="text-container">
-        <h2>Elena, 25 ans</h2>
-        <h1>Nice</h1>
+      <a href="/home">
+        <button class="profile-button">
+          <img src="/assets/see-profile3.png" class="profile-icon"/>
+        </button>
+      </a>
+      <div class="text-container" >
+        <h1>User : {{ user.id }} {{ user.first_name }} {{ user.last_name }}</h1>
+        <h1>localisation</h1>
         <h3>Tags:</h3>
-        <h1> test</h1>
+        <h1>test</h1>
       </div>
     </div>
-    <!-- Autres divs a changer -->
-    <div class="flex-item">
+    
+    <!-- Autres divs a changer 
+    <div class="flex-item" *ngFor="let user of users">
       <img src="/assets/pictures/t5.jpg" />
       <button class="heart-button" (click)="toggleHeartIcon()">
         <img [src]="heartIconSrc" class="heart-icon" />
@@ -64,10 +65,10 @@
       </button>
     </a>
       <div class="text-container">
-        <h1>John Doe</h1>
+        <h1>User : {{ user.id }} {{ user.first_name }} {{ user.last_name }}</h1>
       </div>
     </div>
-    <div class="flex-item">
+    <div class="flex-item" *ngFor="let user of users">
       <img src="/assets/pictures/test2.jpg" />
       <button class="heart-button" (click)="toggleHeartIcon()">
         <img [src]="heartIconSrc" class="heart-icon" />
@@ -78,7 +79,7 @@
       </button>
     </a>
       <div class="text-container">
-        <h1>John Doe</h1>
+        <h1>User : {{ user.id }} {{ user.first_name }} {{ user.last_name }}</h1>
       </div>
     </div>
   </div>
@@ -94,7 +95,6 @@
       </button>
     </a>
       <div class="text-container">
-        <h1>John Doe</h1>
       </div>
     </div>
     <div class="flex-item">
@@ -124,7 +124,7 @@
       <div class="text-container">
         <h1>John Doe</h1>
       </div>
-    </div>
+    </div>-->
   </div>
 
   <footer class="footer mt-auto py-3 bg-light">
