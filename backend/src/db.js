@@ -7,4 +7,3 @@ const sequelize = new Sequelize('dbmatcha', 'msebbane', 'pass', {
 });
 
 module.exports = sequelize;
-

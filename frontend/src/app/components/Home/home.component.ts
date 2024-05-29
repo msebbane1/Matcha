@@ -15,21 +15,44 @@ import { UserService, User } from '../../guards/user.service';
 })
 export class HomeComponent implements OnInit {
   users: User[] = [];
-  filteredUsers: User[] = []; 
+  filteredUsers: User[] = [];
+  userId: number | null = null;
+  userSession: any = null;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getAllUsers().subscribe(
-      users => {
-        this.users = users;
-        this.filteredUsers = this.users;
-      },
-      error => {
-        console.error('Erreur lors de la récupération des utilisateurs', error);
-      }
-    );
+    this.userSession = localStorage.getItem('userInfo');
+    if (this.userSession !== null) {
+      const userInfoParse = JSON.parse(this.userSession);
+      this.userId = userInfoParse.id;
+    }
+
+    if (this.userId !== null) {
+      this.userService.getAllUsers().subscribe(
+        users => {
+          this.users = users;
+          if (this.userId !== null) {
+            this.userService.getFilteredUsers(this.userId).subscribe(
+              filteredUsers => {
+                this.filteredUsers = filteredUsers;
+              },
+              error => {
+                console.error('Erreur lors de la récupération des utilisateurs filtrés', error);
+              }
+            );
+          }
+        },
+        error => {
+          console.error('Erreur lors de la récupération de tous les utilisateurs', error);
+        }
+      );
+    } else {
+      console.error('ID de l\'utilisateur introuvable dans le localStorage');
+    }
   }
+
+
 
   showDropdown = false;
   searchQuery = '';

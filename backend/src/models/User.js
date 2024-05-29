@@ -1,6 +1,19 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../db');
 
+const allowedTags = ['tag1', 'tag2', 'tag3', 'tag4', 'tag5', 'tag6', 'tag7', 'tag8', 'tag9', 'tag10'];
+
+const generateRandomTags = () => {
+  const randomTags = [];
+  const shuffledTags = allowedTags.sort(() => 0.5 - Math.random());
+
+  for (let i = 0; i < 5; i++) {
+    randomTags.push(shuffledTags[i]);
+  }
+
+  return randomTags;
+};
+
 const User = sequelize.define('User', {
   username: {
     type: DataTypes.STRING,
@@ -36,8 +49,46 @@ const User = sequelize.define('User', {
     allowNull: false,
     defaultValue: false
   },
+  gender: {
+    type: DataTypes.ENUM('homme', 'femme'),
+    allowNull: false,
+    defaultValue: 'homme'
+  },
+  interest: {
+    type: DataTypes.ENUM('homme', 'femme', 'bisexuel'),
+    allowNull: false,
+    defaultValue: 'bisexuel'
+  },
+  tags: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    allowNull: true,
+    defaultValue: generateRandomTags(),
+  },
+  age: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 18,
+    validate: {
+      min: 18,
+      max: 100
+    }
+  },
+  fameRating: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+    defaultValue: 0.0
+  },
+  biography: {
+    type: DataTypes.TEXT,
+    allowNull: true
+  },
+  localisation: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
 });
 
 module.exports = User;
+
 
 // CREER QUERY a la main et ajouter nom et prenom

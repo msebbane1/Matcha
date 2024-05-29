@@ -16,4 +16,4 @@ EXPOSE 8080
 # Exécution des migrations au démarrage
 #CMD ["sh", "-c", "yarn sequelize db:migrate && yarn start"]
 
-CMD ["yarn", "start"]
+CMD ["./start.sh"]

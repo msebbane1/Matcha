@@ -12,7 +12,11 @@ services:
    volumes:
      - ./backend:/app
    restart: unless-stopped
-   command: sh -c "yarn install && npx sequelize-cli db:migrate && yarn start"
+   command: sh -c "yarn install && npx sequelize-cli db:migrate && cd src && node createFakeUsers.js && cd .. && yarn start"
+   environment:
+      DATABASE_URL: postgres://msebbane:pass@postgres:5432/dbmatcha
+   depends_on:
+     - postgres
 
   # FRONTEND
   frontend:

@@ -1,3 +1,4 @@
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth.routes');
@@ -6,6 +7,10 @@ const cors = require('cors');
 const pool = require('./db');
 
 const app = express();
+
+// app.js
+require('dotenv').config();
+
 
 app.use(cors());
 // Middleware pour parser le corps des requêtes en JSON
