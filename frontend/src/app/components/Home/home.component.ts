@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../Navbar/navbar.component';
+import { ResearchComponent } from '../Research/research.component';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { FormsModule } from '@angular/forms';
@@ -9,7 +10,7 @@ import { UserService, User } from '../../guards/user.service';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NavbarComponent, FormsModule, TypeaheadModule, CommonModule],
+  imports: [NavbarComponent, ResearchComponent, FormsModule, TypeaheadModule, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -18,74 +19,32 @@ export class HomeComponent implements OnInit {
   filteredUsers: User[] = [];
   userId: number | null = null;
   userSession: any = null;
+  userSessionId: any = this.getUserIdSession();
 
   constructor(private userService: UserService) { }
 
-  ngOnInit() {
+  getUserIdSession(){
     this.userSession = localStorage.getItem('userInfo');
     if (this.userSession !== null) {
       const userInfoParse = JSON.parse(this.userSession);
       this.userId = userInfoParse.id;
     }
+    return this.userId;
+  }
 
-    if (this.userId !== null) {
-      this.userService.getAllUsers().subscribe(
+  ngOnInit() {
+      this.userService.getPublicInfosUsers(this.userSessionId).subscribe(
         users => {
           this.users = users;
-          if (this.userId !== null) {
-            this.userService.getFilteredUsers(this.userId).subscribe(
-              filteredUsers => {
-                this.filteredUsers = filteredUsers;
-              },
-              error => {
-                console.error('Erreur lors de la récupération des utilisateurs filtrés', error);
-              }
-            );
-          }
-        },
+          },
         error => {
-          console.error('Erreur lors de la récupération de tous les utilisateurs', error);
+          console.error('Erreur lors de la récupération des infos utilisateurs', error);
         }
       );
-    } else {
-      console.error('ID de l\'utilisateur introuvable dans le localStorage');
-    }
   }
 
-
-
-  showDropdown = false;
-  searchQuery = '';
-  filters = ['Tags', 'Age', 'Location'];
-  autocompleteOptions: string[] = [];
-
-  selectFilter(filter: string) {
-    this.searchQuery = filter;
-    this.showDropdown = false;
-  }
-
-  onInputChange() {
-    const allOptions = ['Tags', 'Age', 'Location', 'Fame Rating']; 
-    this.autocompleteOptions = allOptions.filter(option =>
-      option.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
-  }
-
-  selectAutocompleteOption(option: string) {
-    this.searchQuery = option;
-    this.autocompleteOptions = [];
-  }
-
-  sortByFirstName() {
-    this.filteredUsers.sort((a, b) => a.first_name.localeCompare(b.first_name));
-  }
-
-  search() {
-    console.log('Recherche effectuée avec la requête :', this.searchQuery);
-    if (this.searchQuery === 'Tags') {
-      console.log('search :', this.searchQuery);
-      this.sortByFirstName();
-    }
+  onSortedUsers(users: User[]) {
+    this.users = users;  // Mise à jour des utilisateurs triés
   }
 
   isHeartClicked: boolean = false;

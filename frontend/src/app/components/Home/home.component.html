@@ -1,58 +1,42 @@
 <body>
-<header>
-<div class="container-navbar">
-  <app-navbar></app-navbar>
-</div>
-</header>
-
-
-<main>
-  <section class="container2">
-      <div class="search-container">
-          <input
-              type="text"
-              class="search-input"
-              [(ngModel)]="searchQuery"
-              (focus)="showDropdown = true"
-              (input)="onInputChange()"
-              placeholder="Trier par..."
-          />
-          <button class="search-button" (click)="search()">
-              <img src="/assets/search-icon1.png" class="search-icon" />
-          </button>
-          <div *ngIf="showDropdown" class="dropdown-menu">
-              <button *ngFor="let filter of filters" (click)="selectFilter(filter)">
-                  {{ filter }}
-              </button>
-          </div>
-          <ul *ngIf="autocompleteOptions.length" class="autocomplete-list">
-              <li *ngFor="let option of autocompleteOptions" (click)="selectAutocompleteOption(option)">
-                  {{ option }}
-              </li>
-          </ul>
-      </div>
-  </section>
-
-
-  <div class="container" style="margin-bottom: 20px;">
-    <div class="flex-item" *ngFor="let user of users" >
-      <img src="/assets/pictures/t.jpg" />
-      <button class="heart-button" (click)="toggleHeartIcon()">
-        <img [src]="heartIconSrc" class="heart-icon" />
-      </button>
-      <a href="/home">
-        <button class="profile-button">
-          <img src="/assets/see-profile3.png" class="profile-icon"/>
+  <header>
+    <!-- Navbar !-->
+    <div class="container-navbar">
+    <app-navbar></app-navbar>
+    </div>
+  </header>
+  <main>
+    <!-- Research !-->
+    <app-research (sortedUsers)="onSortedUsers($event)"></app-research>
+    <!-- Browsing items !-->
+    <div class="container" style="margin-bottom: 20px;">
+      <div class="flex-item" *ngFor="let user of users" >
+        <img src="/assets/pictures/t.jpg" />
+        <button class="heart-button" (click)="toggleHeartIcon()">
+          <img [src]="heartIconSrc" class="heart-icon" />
         </button>
-      </a>
-      <div class="text-container" >
-        <h1>User : {{ user.first_name }} {{ user.last_name }}, {{ user.age }} ans</h1>
-        <h1>Gender: {{ user.gender }}, Interest : {{ user.interest }}</h1>
-        <h1>localisation : {{ user.localisation }}</h1>
-        <h1>FameRating: {{ user.fameRating }}</h1>
-        <h3>Tags: {{ user.tags }}</h3>
+        <a href="/home">
+          <button class="profile-button">
+            <img src="/assets/see-profile3.png" class="profile-icon"/>
+          </button>
+        </a>
+        <div class="text-container" >
+          <h1>User : {{ user.id }} {{ user.last_name }}, {{ user.age }} ans</h1>
+          <h1>Gender: {{ user.gender }}, Interest : {{ user.interest }}</h1>
+          <h1>localisation : {{ user.localisation }}</h1>
+          <h1>FameRating: {{ user.fameRating }}</h1>
+          <h3>Tags: {{ user.tags }}</h3>
+        </div>
       </div>
     </div>
+    <!-- Footer !-->
+    <footer class="footer mt-auto py-3 bg-light">
+      <div class="container">
+        <span class="text-muted">Footer content here</span>
+      </div>
+    </footer>
+  </main>
+</body>
     
     <!-- Autres divs a changer 
     <div class="flex-item" *ngFor="let user of users">
@@ -126,16 +110,7 @@
         <h1>John Doe</h1>
       </div>
     </div>-->
-  </div>
 
-  <footer class="footer mt-auto py-3 bg-light">
-    <div class="container">
-      <span class="text-muted">Footer content here</span>
-    </div>
-  </footer>
-</main>
-
-</body>
 
 
 

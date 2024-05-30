@@ -5,12 +5,13 @@ import { LandingPageComponent } from './components/LandingPage/landingPage.compo
 import { HomeComponent } from './components/Home/home.component';
 import { LoginModalComponent } from './components/Auth/login-modal.component';
 import { NavbarComponent } from './components/Navbar/navbar.component';
+import { ResearchComponent } from './components/Research/research.component';
 
 // Composant principal qui affiche tous les composants + RouterOutlet pour les redirections
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LandingPageComponent, LoginModalComponent, HomeComponent, NavbarComponent],
+  imports: [RouterOutlet, LandingPageComponent, LoginModalComponent, ResearchComponent, HomeComponent, NavbarComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

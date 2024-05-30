@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const { v4: uuidv4 } = require('uuid');
 require('dotenv').config();
-const User = require('../models/User');
+const User = require('../../models/User');
 
 // CONFIRMATION/ENVOI MAIL
 

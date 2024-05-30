@@ -25,11 +25,25 @@ export class UserService {
 
   constructor() { }
 
-  getAllUsers(): Observable<User[]> {
+  getPublicInfosUsers(userId: number): Observable<User[]> {
     return new Observable<User[]>((observer) => {
-      axios.post((`${this.apiUrl}/infos`), {})
+      axios.post((`${this.apiUrl}/infos`), { userId })
         .then(response => {
-          console.log("test db:", response.data)
+          console.log("Infos public users db:", response.data)
+          observer.next(response.data);
+          observer.complete();
+        })
+        .catch(error => {
+          observer.error(error);
+        });
+    });
+  }
+
+  sortByAgeUsers(userId: number): Observable<User[]> {
+    return new Observable<User[]>((observer) => {
+      axios.post(`${this.apiUrl}/sort-age`, { userId })
+        .then(response => {
+          console.log("Filtered users from server:", response.data);
           observer.next(response.data);
           observer.complete();
         })

@@ -1,7 +1,7 @@
 const authUtils = require('./auth.utils');
 const authVerifyAccount = require('./auth.verifyAccount');
 const authJwt = require('./auth.jwt');
-const User = require('../models/User');
+const User = require('../../models/User');
 
 //////////////////////////////////////////// LOGIN /////////////////////////////////////
 exports.login = async (req, res) => {
@@ -30,7 +30,6 @@ exports.login = async (req, res) => {
                   username: user.username,
                   id: user.id,
                   email: user.email,
-                  test_tag: user.first_name, //TEST
                   first_name: user.first_name,
                   last_name: user.last_name,
                   verified: user.verified
@@ -109,7 +108,12 @@ exports.register = async (req, res) => {
             password: hashedPassword,
             verificationLink: verificationId, 
             first_name: first_name, 
-            last_name: last_name 
+            last_name: last_name,
+            //TEST a enlever apres vrai infos recuperer
+            gender: 'homme',
+            interest: 'femme',
+            age: 35,
+            fameRating: 4.5
           });
         await user.save();
 

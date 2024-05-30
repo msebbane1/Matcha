@@ -1,0 +1,31 @@
+<section class="container2">
+      <div class="search-container">
+          <input
+              type="text"
+              class="search-input"
+              [(ngModel)]="searchQuery"
+              (focus)="showDropdown = true"
+              (input)="onInputChange()"
+              placeholder="Trier par..."
+          />
+          <button class="search-button" (click)="search()">
+              <img src="/assets/search-icon1.png" class="search-icon" />
+          </button>
+          <div *ngIf="showDropdown" class="dropdown-menu">
+              <button *ngFor="let filter of filters" (click)="selectFilter(filter)">
+                  {{ filter }}
+              </button>
+          </div>
+          <ul *ngIf="autocompleteOptions.length" class="autocomplete-list">
+              <li *ngFor="let option of autocompleteOptions" (click)="selectAutocompleteOption(option)">
+                  {{ option }}
+              </li>
+          </ul>
+      </div>
+    </section>
+
+
+
+
+
+  

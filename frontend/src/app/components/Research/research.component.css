@@ -1,0 +1,377 @@
+main {
+  background-color: white;
+  background-repeat: repeat; 
+  background-size: auto; 
+  background-attachment: fixed;
+  height: 100vh; 
+}
+
+header {
+  background-color: black;
+  height: 10vh;
+}
+
+/* /////////////////////////////// SECTION SEARCH ///////////////////////////////*/
+
+
+.container2 {
+  display: grid;
+  text-align: center;
+  place-items: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/assets/42.jpg');
+  background-repeat: no-repeat;
+  background-color: #0006;
+  height: 24vh;
+  background-size: cover;
+  margin-bottom: 50px;
+  background-position: 0 -130px;
+  background-attachment: fixed;
+}
+
+@media (min-width: 1200px) {
+  .container2 {
+    background-position: 0 -190px;
+  }
+}
+
+@media (max-width: 740px) {
+  .container2 {
+    background-position: center -140px;
+    background-attachment: fixed;
+  }
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-input {
+  width: 100%;
+  background-color: transparent;
+  padding: 10px 50px 10px 10px;
+  border-radius: 50px;
+  border: 3px solid white;
+  box-shadow: 0px 20px 100px rgba(0, 0, 0, 0.2);
+  font-family: sans-serif;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border: 3px solid white;
+}
+.search-input:hover {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.search-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.search-button img.search-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-container {
+    max-width: 90%;
+  }
+}
+
+
+
+.dropdown-menu {
+  position: absolute;
+  top: 95%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  width: 100%;
+  margin-top: 5px;
+  border-radius: 4px;
+}
+
+.dropdown-menu button {
+  background: none;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown-menu button:hover {
+  background-color: #f1f1f1;
+}
+
+.autocomplete-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  width: 100%;
+  margin-top: 5px;
+  border-radius: 4px;
+  list-style: none;
+  padding: 0;
+}
+
+.autocomplete-list li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.autocomplete-list li:hover {
+  background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-container {
+    max-width: 90%;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+
+
+.container {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.flex-item {
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  height: 400px;
+  justify-content: center;
+  flex-grow: 1;
+  flex-basis: 300px;
+  font-size: 64px;
+  flex-direction: column;
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #dcdcdc;
+}
+
+
+.flex-item img {
+ /* max-width: 280px;*/
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+@media (width <= 740px){
+  .flex-item img {
+   /* margin: -100px 0 30px;*/
+    max-width: 1000px;
+    width: 100%;
+    /*margin-bottom: 40px;*/
+  }
+  
+}
+
+
+
+/* PROFILE BUTTON */
+.profile-button {
+  position: absolute;
+  top: 145px; 
+  right: 95px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
+.profile-button img.profile-icon {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.profile-button:hover img.profile-icon {
+  transform: scale(1.1);
+}
+
+/* LOVE BUTTON */
+
+.heart-button {
+  position: absolute;
+  top: 145px; 
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+}
+.heart-button img.heart-icon {
+  width: 70px;
+  height: 70px;
+  transition: transform 0.3s ease;
+}
+
+.heart-button:hover img.heart-icon {
+  width: 70px;
+  height: 70px;
+  transform: scale(1.1);
+}
+
+.heart-button:hover img.heart-icon:hover {
+  content: url('/assets/love-button3.png');
+}
+
+/* TEXTE BOX */
+.text-container {
+  height: 50%;
+  padding: 18px;
+}
+
+.flex-item .text-container h2 {
+  color: black;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+
+.flex-item .text-container h3 {
+  color: black;
+  text-align: left;
+  font-size: 15px;
+  margin-bottom: 5px;
+}
+
+.text-container h1 {
+  color: grey;
+  font-size: 15px;
+  text-align: left;
+  margin-bottom: 5px;
+}
+
+
+.fixed-header {
+  position: fixed;
+  top: 20px;
+}
+
+.container-navbar {
+
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+
+
+/* BACKGROUND IMAGE TEST
+.background-image {
+  background-color: white;
+  background-repeat: repeat; 
+  background-size: auto; 
+  background-attachment: fixed;
+  height: 100vh; 
+}
+
+.background-image3 {
+  background-image: url('/assets/tt.png');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+
+.background-image2 {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/assets/74.jpg');
+  background-repeat: no-repeat;
+  background-color: #0006;
+  height: 100vh;
+  background-size: cover;
+}
+@media screen and (max-width: 768px) {
+  .background-image {
+    height: 100vh;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .background-image {
+    height: 100vh;
+  }
+}
+.background-image3 {
+  background-color: #e9b3d5;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: 600% 600%;
+}
+
+.background-image2 {
+  background: linear-gradient(45deg, #8A2BE2, #FF69B4, #FFD700);
+  background-size: 600% 600%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  position: relative;
+  display: grid;
+  place-items: center;
+  animation: gradientAnimation 20s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+} */
+
+
+
+
+
