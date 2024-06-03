@@ -14,6 +14,7 @@ export interface User {
   fameRating: number;
   biography: string;
   localisation: string;
+  status: boolean;
 }
 
 

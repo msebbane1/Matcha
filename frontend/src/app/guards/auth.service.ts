@@ -3,20 +3,30 @@ import axios from 'axios';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  public isAuth: BehaviorSubject<boolean>; //a mettre en private ??
+  //public isAuth: BehaviorSubject<boolean>; //a mettre en private ??
 
   constructor(private router: Router) {
-    this.isAuth = new BehaviorSubject<boolean>(false);
+    //this.isAuth = new BehaviorSubject<boolean>(false);
+  }
+
+  getUserId(): number {
+    const userInfo = localStorage.getItem('userInfo');
+    if (userInfo) {
+      const userInfoParse = JSON.parse(userInfo);
+      return userInfoParse.id;
+    }
+    return 0;
   }
 
   logout(): void {
     localStorage.removeItem('token');
     console.log("token logout: ", localStorage.getItem('token'));
-    this.isAuth.next(false);
+    //this.isAuth.next(false);
     this.router.navigate(['/']);
   }
 
@@ -53,7 +63,7 @@ export class AuthService {
               console.log("TAG TEST NAME: ", userInfoParse.test_tag);
             }*/
             
-            this.isAuth.next(true);
+            //this.isAuth.next(true);
             observer.next(true);
           } else {
             observer.next(false);

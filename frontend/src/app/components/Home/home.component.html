@@ -6,6 +6,8 @@
     </div>
   </header>
   <main>
+    <h1>WebSocket Test</h1>
+    <div *ngIf="welcomeMessage">{{ welcomeMessage }}</div>
     <!-- Research !-->
     <app-research (sortedUsers)="onSortedUsers($event)"></app-research>
     <!-- Browsing items !-->
@@ -23,7 +25,7 @@
         <div class="text-container" >
           <h1>User : {{ user.id }} {{ user.last_name }}, {{ user.age }} ans</h1>
           <h1>Gender: {{ user.gender }}, Interest : {{ user.interest }}</h1>
-          <h1>localisation : {{ user.localisation }}</h1>
+          <h1>connection : {{ user.status }}</h1>
           <h1>FameRating: {{ user.fameRating }}</h1>
           <h3>Tags: {{ user.tags }}</h3>
         </div>

@@ -22,7 +22,7 @@ exports.login = async (req, res) => {
     else {
 
       const tokenJwt = authJwt.generatetokenjwt({userId: user.id, userUsername: user.username})
-
+      await User.update({ status: true }, { where: { id: user.id }});
       res.json({ success: true, 
                  message: 'Authentification réussie',
                  token: tokenJwt,
@@ -32,6 +32,7 @@ exports.login = async (req, res) => {
                   email: user.email,
                   first_name: user.first_name,
                   last_name: user.last_name,
+                  status: user.status,
                   verified: user.verified
                  }});
     }

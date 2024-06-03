@@ -21,6 +21,11 @@ app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 
 app.get('/', (req, res) => {
+  const message = 'Backend is working on app.js';
+      res.send(message);
+});
+/*
+app.get('/', (req, res) => {
   pool.query('SELECT NOW()', (err, result) => {
     if (err) {
       res.status(500).send(err.message);
@@ -31,6 +36,6 @@ app.get('/', (req, res) => {
       res.send(message);
     }
   });
-});
+});*/
 
 module.exports = app;

@@ -53,6 +53,11 @@ const generateRandomTags = () => {
       type: Sequelize.STRING,
       allowNull: true
     });
+    await queryInterface.addColumn('Users', 'status', {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    });
   },
 
   async down (queryInterface, Sequelize) {
@@ -63,5 +68,6 @@ const generateRandomTags = () => {
     await queryInterface.removeColumn('Users', 'fameRating');
     await queryInterface.removeColumn('Users', 'biography');
     await queryInterface.removeColumn('Users', 'localisation');
+    await queryInterface.removeColumn('Users', 'status');
   }
 };

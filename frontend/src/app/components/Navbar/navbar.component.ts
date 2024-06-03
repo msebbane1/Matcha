@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../guards/auth.service';
 import { Renderer2 } from '@angular/core';
+import { SocketService } from '../../guards/socket.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +15,7 @@ export class NavbarComponent {
 
   isMenuOpen = false;
 
-  constructor( private authService: AuthService, private renderer: Renderer2) {}
+  constructor( private authService: AuthService, private socketService: SocketService, private renderer: Renderer2) {}
 
   toggleMenu(event: Event): void {
     this.isMenuOpen = (event.target as HTMLInputElement).checked;
