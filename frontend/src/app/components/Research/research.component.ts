@@ -22,8 +22,28 @@ export class ResearchComponent implements OnInit {
   userSession: any = null;
   userSessionId: any = this.getUserIdSession();
 
+  showAdvancedSearch: boolean = false;
+  ageRangeStart: number = 18;
+  ageRangeEnd: number = 99;
+  availableTags: string[] = ['Tag1', 'Tag2', 'Tag3']; // Exemple de tags disponibles
+  selectedTags: string[] = [];
+  location: string = '';
+  fameRating: number = 0;
+
+
   constructor(private userService: UserService) { }
 
+  applyAdvancedSearch() {
+    // Implémentez ici la logique pour appliquer les filtres de recherche avancée
+    console.log({
+      ageRangeStart: this.ageRangeStart,
+      ageRangeEnd: this.ageRangeEnd,
+      selectedTags: this.selectedTags,
+      location: this.location,
+      fameRating: this.fameRating
+    });
+  }
+  
   getUserIdSession(){
     this.userSession = localStorage.getItem('userInfo');
     if (this.userSession !== null) {
@@ -42,6 +62,10 @@ export class ResearchComponent implements OnInit {
           console.error('Erreur lors de la récupération des infos utilisateurs', error);
         }
       );
+  }
+
+  toggleAdvancedSearch() {
+    this.showAdvancedSearch = !this.showAdvancedSearch;
   }
 
   showDropdown = false;

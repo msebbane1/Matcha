@@ -13,6 +13,7 @@ import { SocketService } from '../../guards/socket.service';
 })
 export class NavbarComponent {
 
+  isLoading = false;
   isMenuOpen = false;
 
   constructor( private authService: AuthService, private socketService: SocketService, private renderer: Renderer2) {}
@@ -28,8 +29,8 @@ export class NavbarComponent {
 
   showNavbar = true;
 
-  logout(): void {
+  logout(event: Event): void {
+    event.preventDefault();
     this.authService.logout();
   }
-
 }

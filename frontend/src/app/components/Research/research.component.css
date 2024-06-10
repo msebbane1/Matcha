@@ -11,6 +11,17 @@ header {
   height: 10vh;
 }
 
+.advanced-search-button-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.advanced-search-container {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
 /* /////////////////////////////// SECTION SEARCH ///////////////////////////////*/
 
 

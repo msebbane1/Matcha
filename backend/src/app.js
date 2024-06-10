@@ -12,9 +12,31 @@ const app = express();
 require('dotenv').config();
 
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://localhost:4200',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Authorization, Content-Type'
+}));
 // Middleware pour parser le corps des requêtes en JSON
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use((req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store');
+  res.setHeader('Expires', '0');
+  next();
+});
+/*
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  if (req.method === 'OPTIONS') {
+    res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
+    return res.status(200).json({});
+  }
+  next();
+});*/
+
 
 // Routes a mettre ici
 app.use('/auth', authRoutes);

@@ -6,8 +6,12 @@
     </div>
   </header>
   <main>
+    <!-- 
     <h1>WebSocket Test</h1>
     <div *ngIf="welcomeMessage">{{ welcomeMessage }}</div>
+    <div *ngFor="let message of messages">
+      {{ message }}
+    </div> -->
     <!-- Research !-->
     <app-research (sortedUsers)="onSortedUsers($event)"></app-research>
     <!-- Browsing items !-->

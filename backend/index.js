@@ -17,6 +17,59 @@ const io = socketIo(httpsServer, {
       methods: ["GET", "POST"]
     }
   });
+
+const connectedUsers = new Set();
+const disconnectTimeouts = {};
+
+io.on('connection', (socket) => {
+    const userId = socket.handshake.query.userId;
+
+    // Annule la déconnexion si l'user se reconnecte rapidement
+    if (disconnectTimeouts[userId]) {
+        clearTimeout(disconnectTimeouts[userId]);
+        delete disconnectTimeouts[userId];
+    }
+
+    if (!connectedUsers.has(userId)) {
+        connectedUsers.add(userId);
+        console.log(`[SOCKET] User ${userId} connected.`);
+        User.update({ status: true }, { where: { id: userId }});
+        socket.broadcast.emit('userConnected', `User ${userId} is online`);
+    }
+
+    socket.on('disconnect', async () => {
+        disconnectTimeouts[userId] = setTimeout(() => {
+            connectedUsers.delete(userId);
+            console.log(`[SOCKET] User ${userId} disconnected.`);
+            //User.update({ status: false }, { where: { id: userId }});
+            io.emit('userDisconnected', `User ${userId} is offline`);
+            delete disconnectTimeouts[userId];
+        }, 4000); 
+    });
+
+    // Heartbeat pour vérifier les connexions actives
+    setInterval(() => {
+        socket.emit('ping');
+    }, 30000); // Ping toutes les 30 secondes
+
+    socket.on('pong', () => {
+        console.log(`Received pong from ${userId}`);
+    });
+});
+/*
+io.on('connection', (socket) => {
+    const userId = socket.handshake.query.userId;
+
+    console.log(`[SOCKET] User ${userId} connected.`);
+    socket.broadcast.emit('userConnected', `User ${userId} s'est connecteeeé`);
+
+    socket.on('disconnect', async () => {
+        console.log(`[SOCKET] User ${userId} disconnectedeeee.`);
+        io.emit('userDisconnected', `User ${userId} s'est déconnectéeee`);
+        console.log(`[SOCKET] User ${userId} disconnecteeeee&&&.`);
+    });
+});*/
+
   /*
   // ID de socket user
   io.on('connection', (socket) => {
@@ -29,40 +82,6 @@ const io = socketIo(httpsServer, {
         io.emit('userDisconnected', socket.id);
     });
 });*/
-
-  io.on('connection', (socket) => {
-    //socket.id ??
-    const userId = socket.handshake.query.userId;
-  
-    console.log(`[SOCKET] User ${userId} connected.`);
-
-    
-    // Envoyer un msg test
-    socket.emit('welcome', `Welcome to the WebSocket server, User ${userId}!`);
-
-
-    let disconnected = false; // Variable pour suivre l'état de la déconnexion
-
-    // Gérer la déconnexion d'un utilisateur
-    socket.on('disconnect', async () => {
-        console.log('Utilisateur déconnecté:', userId);
-        
-        if (!disconnected) {
-            try {
-                await User.update({ status: false }, { where: { id: userId }});
-                
-                
-                io.emit('userDisconnected', `User ${userId} s'est déconnecté`);
-                console.log(`[SOCKET] User ${userId} disconnected.`);
-            } catch (error) {
-                console.error('Erreur lors de la mise à jour du statut de l\'utilisateur:', error);
-            }
-        }
-        
-        disconnected = true;
-    });
-  
-  });
 
 httpsServer.listen(8080, () => {
     console.log('Server running on port 8080');

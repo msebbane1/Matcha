@@ -22,7 +22,38 @@
               </li>
           </ul>
       </div>
+
+      <!-- Advanced Search Button !-->
+    <div class="advanced-search-button-container">
+        <button (click)="toggleAdvancedSearch()">Recherche avancée</button>
+      </div>
+    
     </section>
+
+    <!-- Advanced Search Container !-->
+    <div *ngIf="showAdvancedSearch" class="advanced-search-container">
+        <div>
+          <label>Âge: 18 <input type="range" min="18" max="99" [(ngModel)]="ageRangeStart"> - <input type="range" min="18" max="99" [(ngModel)]="ageRangeEnd"> 99</label>
+        </div>
+        <div>
+          <label>Tags:
+            <select multiple [(ngModel)]="selectedTags">
+              <option *ngFor="let tag of availableTags" [value]="tag">{{ tag }}</option>
+            </select>
+          </label>
+        </div>
+        <div>
+          <label>Localisations:
+            <input type="text" [(ngModel)]="location">
+          </label>
+        </div>
+        <div>
+          <label>Fame Rating:
+            <input type="range" min="0" max="10" [(ngModel)]="fameRating">
+          </label>
+        </div>
+        <button (click)="applyAdvancedSearch()">Appliquer</button>
+      </div>
 
 
 

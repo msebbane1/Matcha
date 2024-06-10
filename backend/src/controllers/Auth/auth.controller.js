@@ -3,6 +3,7 @@ const authVerifyAccount = require('./auth.verifyAccount');
 const authJwt = require('./auth.jwt');
 const User = require('../../models/User');
 
+
 //////////////////////////////////////////// LOGIN /////////////////////////////////////
 exports.login = async (req, res) => {
   const { username, password } = req.body;
@@ -22,7 +23,7 @@ exports.login = async (req, res) => {
     else {
 
       const tokenJwt = authJwt.generatetokenjwt({userId: user.id, userUsername: user.username})
-      await User.update({ status: true }, { where: { id: user.id }});
+      //await User.update({ status: true }, { where: { id: user.id }});
       res.json({ success: true, 
                  message: 'Authentification réussie',
                  token: tokenJwt,
@@ -127,6 +128,28 @@ exports.register = async (req, res) => {
   }
 };
 
+//////////////////////////////////////////// LOGOUT /////////////////////////////////////
+exports.logout = async (req, res) => {
+  try {
+
+    const { userId } = req.body;
+    if (!userId) {
+      res.status(500).json({ success: false, message: 'ERREUR ID' });
+      throw new Error('ID de l\'utilisateur manquant');
+    }
+
+    await User.update({ status: false }, { where: { id: userId }});
+    if(!User){
+      res.status(500).json({ success: false, message: 'ERREUR USER' });
+    }
+
+    res.status(200).json({ success: true, message: 'Déconnexion réussie' });
+
+  } catch (error) {
+    console.error('Erreur lors de la deconnexion!!!:', error);
+    res.status(500).json({ success: false, message: 'Une erreur est survenue lors de la deconnection!!!!!!' });
+  }
+};
 
 //////////////////////////////////// CHECK VERIFICATION LINK ///////////////////////////////////////////
 exports.verifyAccount = async (req, res) => {
