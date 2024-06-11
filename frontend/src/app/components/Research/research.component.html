@@ -1,4 +1,6 @@
 <section class="container2">
+  <h1 class="title-search"> Recherche ton Match!</h1>
+  <h1 class="title-search2"> Affinez vos recherches pour trouver votre partenaire idéal. Sélectionnez vos critères et commencez votre aventure amoureuse.</h1>
       <div class="search-container">
           <input
               type="text"
@@ -12,7 +14,7 @@
               <img src="/assets/search-icon1.png" class="search-icon" />
           </button>
           <button class="criteria-button" (click)="toggleAdvancedSearch()">
-            <img src="/assets/ajustment.png" class="criteria-icon" />
+            <img src="/assets/ajustment2.png" class="criteria-icon" />
         </button>
           <div *ngIf="showDropdown" class="dropdown-menu">
               <button *ngFor="let filter of filters" (click)="selectFilter(filter)">
