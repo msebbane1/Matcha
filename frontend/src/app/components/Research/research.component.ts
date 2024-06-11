@@ -134,6 +134,7 @@ export class ResearchComponent implements OnInit {
       
       (!this.tagsEnabled || (this.selectedTags.length === 0 || this.selectedTags.every(tag => user.tags.includes(tag))))
     );
+    this.sortedUsers.emit(this.filteredUsers);
   }
 
   resetFilters() {

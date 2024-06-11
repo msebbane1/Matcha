@@ -11,6 +11,9 @@
           <button class="search-button" (click)="search()">
               <img src="/assets/search-icon1.png" class="search-icon" />
           </button>
+          <button class="criteria-button" (click)="toggleAdvancedSearch()">
+            <img src="/assets/ajustment.png" class="criteria-icon" />
+        </button>
           <div *ngIf="showDropdown" class="dropdown-menu">
               <button *ngFor="let filter of filters" (click)="selectFilter(filter)">
                   {{ filter }}
@@ -23,10 +26,17 @@
           </ul>
       </div>
 
-      <!-- Advanced Search Button !-->
+      <!-- Advanced Search Button 
+      <div class="advanced-search-button-container">
+      <button class="criteria-button" (click)="toggleAdvancedSearch()">
+        <img src="/assets/ajustment.png" class="criteria-icon" />
+    </button>
+  </div> -->
+    <!--
     <div class="advanced-search-button-container">
+        <img src="assets/ajustment.png" class="icon-criteria ">
         <a class="title-text-logo" (click)="toggleAdvancedSearch()">Recherche avancée</a>
-      </div>
+      </div>-->
     
    
 
@@ -59,7 +69,7 @@
             <input type="checkbox" [(ngModel)]="tagsEnabled" />
             <label>Tags:
                 <input type="range" min="0" max="5" [(ngModel)]="selectedTags">
-                <span>{{ locationRange }} Tags en commun</span>
+                <span>{{ selectedTags }} Tags en commun</span>
               </label>
             <!--
             <label>Tags:
