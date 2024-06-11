@@ -22,28 +22,26 @@ export class ResearchComponent implements OnInit {
   userSession: any = null;
   userSessionId: any = this.getUserIdSession();
 
+  showDropdown = false;
+  searchQuery = '';
+  filters = ['Tags', 'Age', 'Location'];
+  autocompleteOptions: string[] = [];
+
   showAdvancedSearch: boolean = false;
   ageRangeStart: number = 18;
   ageRangeEnd: number = 99;
-  availableTags: string[] = ['Tag1', 'Tag2', 'Tag3']; // Exemple de tags disponibles
-  selectedTags: string[] = [];
-  location: string = '';
   fameRating: number = 0;
+  locationRange: number = 0;
+  availableTags: string[] = ['Tag1', 'Tag2', 'Tag3'];
+  selectedTags: string[] = [];
+  ageEnabled: boolean = false;
+  fameEnabled: boolean = false;
+  locationEnabled: boolean = false;
+  tagsEnabled: boolean = false;
 
 
   constructor(private userService: UserService) { }
 
-  applyAdvancedSearch() {
-    // Implémentez ici la logique pour appliquer les filtres de recherche avancée
-    console.log({
-      ageRangeStart: this.ageRangeStart,
-      ageRangeEnd: this.ageRangeEnd,
-      selectedTags: this.selectedTags,
-      location: this.location,
-      fameRating: this.fameRating
-    });
-  }
-  
   getUserIdSession(){
     this.userSession = localStorage.getItem('userInfo');
     if (this.userSession !== null) {
@@ -67,11 +65,6 @@ export class ResearchComponent implements OnInit {
   toggleAdvancedSearch() {
     this.showAdvancedSearch = !this.showAdvancedSearch;
   }
-
-  showDropdown = false;
-  searchQuery = '';
-  filters = ['Tags', 'Age', 'Location'];
-  autocompleteOptions: string[] = [];
 
   selectFilter(filter: string) {
     this.searchQuery = filter;
@@ -122,6 +115,38 @@ export class ResearchComponent implements OnInit {
 
   sortByTags() {
 
+  }
+
+  /*applyAdvancedSearch() {
+    console.log({
+      ageRangeStart: this.ageRangeStart,
+      selectedTags: this.selectedTags,
+      location: this.location,
+      fameRating: this.fameRating
+    });
+  }*/
+
+  applyAdvancedSearch() {
+    // Implémentez ici la logique pour appliquer les filtres de recherche avancée
+    this.filteredUsers = this.users.filter(user => 
+      (!this.ageEnabled || (user.age >= this.ageRangeStart && user.age <= this.ageRangeEnd)) &&
+      (!this.fameEnabled || user.fameRating >= this.fameRating) &&
+      
+      (!this.tagsEnabled || (this.selectedTags.length === 0 || this.selectedTags.every(tag => user.tags.includes(tag))))
+    );
+  }
+
+  resetFilters() {
+    this.ageRangeStart = 16;
+    this.ageRangeEnd = 99;
+    this.fameRating = 1;
+    this.locationRange = 0;
+    this.selectedTags = [];
+    this.ageEnabled = false;
+    this.fameEnabled = false;
+    this.locationEnabled = false;
+    this.tagsEnabled = false;
+    this.applyAdvancedSearch();
   }
 
   search() {

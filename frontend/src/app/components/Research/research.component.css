@@ -1,3 +1,15 @@
+/* FONTS */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+a {
+  text-decoration: none;
+}
+
 main {
   background-color: white;
   background-repeat: repeat; 
@@ -11,15 +23,92 @@ header {
   height: 10vh;
 }
 
+/*
 .advanced-search-button-container {
   text-align: center;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .advanced-search-container {
   border: 1px solid #ccc;
   padding: 20px;
   margin-bottom: 20px;
+}*/
+
+.advanced-search-button-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.advanced-search-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #e94373;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.advanced-search-container {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  width: 65%;
+}
+
+.advanced-search-container h2 {
+  margin-bottom: 20px;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.filter-item label {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.actions button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #e94373;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.results-count {
+  margin-top: 10px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.title-text-logo {
+  font-size: 1.2rem;
+  position: relative;
+  transition: color 0.3s;
+  color: white;
 }
 
 /* /////////////////////////////// SECTION SEARCH ///////////////////////////////*/
@@ -32,23 +121,23 @@ header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/assets/42.jpg');
   background-repeat: no-repeat;
   background-color: #0006;
-  height: 24vh;
+  height: auto;
   background-size: cover;
   margin-bottom: 50px;
-  background-position: 0 -130px;
-  background-attachment: fixed;
+  /*background-position: 0 -130px;
+  background-attachment: fixed;*/
 }
 
 @media (min-width: 1200px) {
   .container2 {
-    background-position: 0 -190px;
+   /* background-position: 0 -190px;*/
   }
 }
 
 @media (max-width: 740px) {
   .container2 {
-    background-position: center -140px;
-    background-attachment: fixed;
+    /*background-position: center -140px;
+    background-attachment: fixed;*/
   }
 }
 
@@ -60,6 +149,7 @@ header {
   position: relative;
   max-width: 600px;
   margin: 0 auto;
+  margin-top: 70px;
 }
 
 .search-input {

@@ -25,37 +25,58 @@
 
       <!-- Advanced Search Button !-->
     <div class="advanced-search-button-container">
-        <button (click)="toggleAdvancedSearch()">Recherche avancée</button>
+        <a class="title-text-logo" (click)="toggleAdvancedSearch()">Recherche avancée</a>
       </div>
     
-    </section>
+   
 
-    <!-- Advanced Search Container !-->
-    <div *ngIf="showAdvancedSearch" class="advanced-search-container">
-        <div>
-          <label>Âge: 18 <input type="range" min="18" max="99" [(ngModel)]="ageRangeStart"> - <input type="range" min="18" max="99" [(ngModel)]="ageRangeEnd"> 99</label>
+     <!-- Advanced Search Container !-->
+     <div *ngIf="showAdvancedSearch" class="advanced-search-container">
+        <h2>Advanced Search</h2>
+        <div class="filters">
+          <div class="filter-item">
+            <input type="checkbox" [(ngModel)]="ageEnabled" />
+            <label>Âge:
+              <input type="range" min="18" max="99" [(ngModel)]="ageRangeStart">
+              <span>{{ ageRangeStart }} ans</span>
+            </label>
+          </div>
+          <div class="filter-item">
+            <input type="checkbox" [(ngModel)]="fameEnabled" />
+            <label>Fame Rating:
+              <input type="range" min="0" max="5" [(ngModel)]="fameRating">
+              <span>{{ fameRating }} FameRate</span>
+            </label>
+          </div>
+          <div class="filter-item">
+            <input type="checkbox" [(ngModel)]="locationEnabled" />
+            <label>Localisation (Km):
+              <input type="range" min="0" max="5000" [(ngModel)]="locationRange">
+              <span>{{ locationRange }} Km</span>
+            </label>
+          </div>
+          <div class="filter-item">
+            <input type="checkbox" [(ngModel)]="tagsEnabled" />
+            <label>Tags:
+                <input type="range" min="0" max="5" [(ngModel)]="selectedTags">
+                <span>{{ locationRange }} Tags en commun</span>
+              </label>
+            <!--
+            <label>Tags:
+              <select multiple [(ngModel)]="selectedTags">
+                <option *ngFor="let tag of availableTags" [value]="tag">tags</option>
+              </select>
+            </label>-->
+          </div>
         </div>
-        <div>
-          <label>Tags:
-            <select multiple [(ngModel)]="selectedTags">
-              <option *ngFor="let tag of availableTags" [value]="tag">{{ tag }}</option>
-            </select>
-          </label>
+        <div class="actions">
+          <button (click)="resetFilters()">Reset</button>
+          <button (click)="applyAdvancedSearch()">Match</button>
         </div>
-        <div>
-          <label>Localisations:
-            <input type="text" [(ngModel)]="location">
-          </label>
-        </div>
-        <div>
-          <label>Fame Rating:
-            <input type="range" min="0" max="10" [(ngModel)]="fameRating">
-          </label>
-        </div>
-        <button (click)="applyAdvancedSearch()">Appliquer</button>
+        <div class="results-count">{{ filteredUsers.length }} results</div>
       </div>
 
-
+    </section>
 
 
 

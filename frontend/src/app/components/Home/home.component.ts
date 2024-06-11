@@ -25,38 +25,7 @@ export class HomeComponent implements OnInit {
   userSession: any = null;
   userSessionId: any = this.getUserIdSession();
 
-  showAdvancedSearch: boolean = false;
-  ageRangeStart: number = 18;
-  ageRangeEnd: number = 99;
-  availableTags: string[] = ['Tag1', 'Tag2', 'Tag3']; // Exemple de tags disponibles
-  selectedTags: string[] = [];
-  location: string = '';
-  fameRating: number = 0;
-  userss: any[] = []; // Exemple de tableau d'utilisateurs, à adapter selon vos besoins
-  
-
   constructor(private userService: UserService, private socketService: SocketService) { }
-
-
-  toggleAdvancedSearch() {
-    this.showAdvancedSearch = !this.showAdvancedSearch;
-  }
-
-  applyAdvancedSearch() {
-    // Implémentez ici la logique pour appliquer les filtres de recherche avancée
-    console.log({
-      ageRangeStart: this.ageRangeStart,
-      ageRangeEnd: this.ageRangeEnd,
-      selectedTags: this.selectedTags,
-      location: this.location,
-      fameRating: this.fameRating
-    });
-  }
-
-  onSortedUserss(sortedUsers: any[]) {
-    this.userss = sortedUsers;
-  }
-
 
   getUserIdSession(){
     this.userSession = localStorage.getItem('userInfo');
@@ -69,7 +38,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    //ttest
+    // test Sockets
+    /*
     this.socketService.listen('userConnected').subscribe((message: string) => {
       this.messages.push(message);
     });
@@ -80,7 +50,7 @@ export class HomeComponent implements OnInit {
     
     this.socketService.listen('welcome').subscribe((message: string) => {
       this.welcomeMessage = message;
-    });
+    });*/
       this.userService.getPublicInfosUsers(this.userSessionId).subscribe(
         users => {
           this.users = users;
