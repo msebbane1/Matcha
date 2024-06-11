@@ -1,3 +1,88 @@
+.custom-range {
+  -webkit-appearance: none;
+  width: 50%;
+  height: 8px; /* Hauteur de la piste */
+  border-radius: 5px;
+  background: #ddd;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.custom-range:hover {
+  opacity: 1;
+}
+
+.custom-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px; /* Largeur du curseur */
+  height: 20px; /* Hauteur du curseur */
+  border-radius: 50%;
+  background: #ff3366;
+  cursor: pointer;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.custom-range::-moz-range-thumb {
+  width: 20px; /* Largeur du curseur */
+  height: 20px; /* Hauteur du curseur */
+  border-radius: 50%;
+  background: #ff3366;
+  cursor: pointer;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.custom-range::-ms-thumb {
+  width: 20px;
+  height: 20px;
+  background: #ff3366;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.custom-range::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background: #ddd;
+  border-radius: 5px;
+}
+
+.custom-range::-moz-range-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background: #ddd;
+  border-radius: 5px;
+}
+
+.custom-range::-ms-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+.custom-range::-ms-fill-lower {
+  background: #ddd;
+  border-radius: 5px;
+}
+
+.custom-range::-ms-fill-upper {
+  background: #ddd;
+  border-radius: 5px;
+}
 
 /* FONTS */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
@@ -116,10 +201,20 @@ header {
   justify-content: space-between;
   align-items: center;
 }
+*
+.test {
+  width: 100%;
+  background-color: #e94373;
+  
+}
+.test2 {
+  background-color: grey;
+  
+}
 
 .actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 20px;
 }
 
@@ -127,7 +222,6 @@ header {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  background-color: #e94373;
   color: white;
   border: none;
   border-radius: 5px;

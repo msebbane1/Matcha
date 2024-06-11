@@ -44,33 +44,33 @@
 
      <!-- Advanced Search Container !-->
      <div *ngIf="showAdvancedSearch" class="advanced-search-container">
-        <h2>Advanced Search</h2>
+        <h2>Recherche Avancée</h2>
         <div class="filters">
           <div class="filter-item">
             <input type="checkbox" [(ngModel)]="ageEnabled" />
             <label>Âge:
-              <input type="range" min="18" max="99" [(ngModel)]="ageRangeStart">
+              <input type="range" min="18" max="99" [(ngModel)]="ageRangeStart" class="custom-range">
               <span>{{ ageRangeStart }} ans</span>
             </label>
           </div>
           <div class="filter-item">
             <input type="checkbox" [(ngModel)]="fameEnabled" />
             <label>Fame Rating:
-              <input type="range" min="0" max="5" [(ngModel)]="fameRating">
+              <input type="range" min="0" max="5" [(ngModel)]="fameRating" class="custom-range">
               <span>{{ fameRating }} FameRate</span>
             </label>
           </div>
           <div class="filter-item">
             <input type="checkbox" [(ngModel)]="locationEnabled" />
             <label>Localisation (Km):
-              <input type="range" min="0" max="5000" [(ngModel)]="locationRange">
+              <input type="range" min="0" max="5000" [(ngModel)]="locationRange" class="custom-range">
               <span>{{ locationRange }} Km</span>
             </label>
           </div>
           <div class="filter-item">
             <input type="checkbox" [(ngModel)]="tagsEnabled" />
             <label>Tags:
-                <input type="range" min="0" max="5" [(ngModel)]="selectedTags">
+                <input type="range" min="0" max="5" [(ngModel)]="selectedTags" class="custom-range">
                 <span>{{ selectedTags }} Tags en commun</span>
               </label>
             <!--
@@ -82,8 +82,8 @@
           </div>
         </div>
         <div class="actions">
-          <button (click)="resetFilters()">Reset</button>
-          <button (click)="applyAdvancedSearch()">Match</button>
+          <button class="test2"(click)="resetFilters()">Reset</button>
+          <button class="test"(click)="applyAdvancedSearch()">Match</button>
         </div>
         <div class="results-count">{{ filteredUsers.length }} results</div>
       </div>
