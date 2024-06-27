@@ -127,7 +127,6 @@ export class ResearchComponent implements OnInit {
   }*/
 
   applyAdvancedSearch() {
-    // Implémentez ici la logique pour appliquer les filtres de recherche avancée
     this.filteredUsers = this.users.filter(user => 
       (!this.ageEnabled || (user.age >= this.ageRangeStart && user.age <= this.ageRangeEnd)) &&
       (!this.fameEnabled || user.fameRating >= this.fameRating) &&

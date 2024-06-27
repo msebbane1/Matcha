@@ -37,6 +37,7 @@ exports.getPublicInfosUsers = async (req, res) => {
 
     /* Ajouter la photo */
     const usersInfosPublic = users.map(user => ({
+      id: user.id,
       username: user.username,
       first_name: user.first_name,
       last_name: user.last_name,
@@ -47,6 +48,7 @@ exports.getPublicInfosUsers = async (req, res) => {
       fameRating: user.fameRating,
       biography: user.biography,
       localisation: user.localisation,
+      status: user.status
     }));
     res.json(usersInfosPublic);
   } catch (err) {

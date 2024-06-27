@@ -19,6 +19,17 @@ html {
 
 
 
+
+.status-online{
+  /*border-bottom: 5px solid #00C2AB;*/
+  border-bottom: 7px solid #5DCE96;
+  /*border-bottom: 5px solid #A1F410;*/
+}
+.status-offline{
+  border-bottom: 7px solid #adacac;
+  /*border-bottom: 7px solid #ce5d95;*/
+}
+
 .container {
   display: flex;
   gap: 8px;
@@ -41,8 +52,12 @@ html {
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border: 1px solid #dcdcdc;
+  transition: width 0.3s ease, height 0.3s ease;
 }
 
+.flex-item:hover {
+  transform: scale(1.010);
+}
 
 .flex-item img {
  /* max-width: 280px;*/
@@ -63,6 +78,52 @@ html {
   
 }
 
+.rating {
+  display: flex;
+  /*justify-content: center;*/
+  align-items: center;
+  margin: -14px 0;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.rating label:before {
+  content: '\2605';
+  font-size: 30px;
+}
+
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+  color: #6f00ff;
+  transition: color 0.3s;
+}
+
+
+/*  FAME DIV */
+.fame-div {
+  position: absolute;
+  top: 305px; 
+  right: -3px;
+  width: 0;
+  height: 0;
+  border-bottom: 100px solid red;
+  border-left: 100px solid transparent;
+  
+}
+
+.fame-div img.fame-icon {
+  width: 50px;
+  height: 50px;
+}
 
 
 /* PROFILE BUTTON */
@@ -86,9 +147,9 @@ html {
   transform: scale(1.1);
 }
 
-/* LOVE BUTTON */
+/* LIKE BUTTON */
 
-.heart-button {
+.like-button {
   position: absolute;
   top: 145px; 
   right: 15px;
@@ -98,19 +159,19 @@ html {
   padding: 0;
   outline: none;
 }
-.heart-button img.heart-icon {
+.like-button img.like-icon {
   width: 70px;
   height: 70px;
   transition: transform 0.3s ease;
 }
 
-.heart-button:hover img.heart-icon {
+.like-button:hover img.like-icon {
   width: 70px;
   height: 70px;
   transform: scale(1.1);
 }
 
-.heart-button:hover img.heart-icon:hover {
+.like-button:hover img.like-icon:hover {
   content: url('/assets/love-button3.png');
 }
 

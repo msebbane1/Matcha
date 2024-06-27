@@ -1,8 +1,10 @@
 const https = require('https');
 const fs = require('fs');
 const app = require('./src/app');
-const socketIo = require('socket.io');
+//const socketIo = require('socket.io');
 const User = require('./src/models/User')
+const sequelize = require('./src/db');
+const SocketServer = require('./src/Socket');
 
 const privateKey = fs.readFileSync('./nginx/localhost.key', 'utf8');
 const certificate = fs.readFileSync('./nginx/localhost.crt', 'utf8');
@@ -10,7 +12,10 @@ const credentials = { key: privateKey, cert: certificate };
 
 const httpsServer = https.createServer(credentials, app);
 
+// Initialize Socket.io
+const io = new SocketServer(httpsServer);
 
+/*
 const io = socketIo(httpsServer, {
     cors: {
       origin: "https://localhost:4200",
@@ -23,6 +28,15 @@ const disconnectTimeouts = {};
 
 io.on('connection', (socket) => {
     const userId = socket.handshake.query.userId;
+
+    socket.on('likeProfile', ({ likerId, likedId }) => {
+      console.log(`Liker ${likerId} a aimé le profil de ${likedId}`);
+  
+      // Émission d'un événement à tous les clients connectés
+      io.emit('notification', {
+        message: `Votre profil a été aimé par l'utilisateur ${likerId}`
+      });
+    });
 
     // Annule la déconnexion si l'user se reconnecte rapidement
     if (disconnectTimeouts[userId]) {
@@ -55,7 +69,7 @@ io.on('connection', (socket) => {
     socket.on('pong', () => {
         console.log(`Received pong from ${userId}`);
     });
-});
+});*/
 /*
 io.on('connection', (socket) => {
     const userId = socket.handshake.query.userId;
@@ -82,7 +96,20 @@ io.on('connection', (socket) => {
         io.emit('userDisconnected', socket.id);
     });
 });*/
-
+/* Pour verifier si la db est bien a jour
+sequelize.sync({ force: false })
+  .then(() => {
+    console.log('Database & tables created!');
+    httpsServer.listen(8080, () => {
+      console.log('Server is running on port 3000');
+    });
+  })
+  .catch(err => {
+    console.error('Unable to create database & tables:', err);
+  });
+*/
 httpsServer.listen(8080, () => {
     console.log('Server running on port 8080');
 });
+
+module.exports = io;

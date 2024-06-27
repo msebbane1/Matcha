@@ -15,6 +15,7 @@ export interface User {
   biography: string;
   localisation: string;
   status: boolean;
+  isLikeClicked: boolean;
 }
 
 

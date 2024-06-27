@@ -3,6 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes');
+const likeRoutes = require('./routes/like.routes');
 const cors = require('cors');
 const pool = require('./db');
 
@@ -41,6 +42,7 @@ app.use((req, res, next) => {
 // Routes a mettre ici
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
+app.use('/like', likeRoutes);
 
 app.get('/', (req, res) => {
   const message = 'Backend is working on app.js';

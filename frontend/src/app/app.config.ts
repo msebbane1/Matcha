@@ -11,8 +11,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { FormsModule } from '@angular/forms';
+import { provideHttpClient } from '@angular/common/http';
 
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideAnimationsAsync(), FormsModule, TypeaheadModule, NgModule, NgbModule, NgbActiveModal, NgbModal, BrowserModule, CommonModule]
+  providers: [provideRouter(routes), provideAnimationsAsync(), provideHttpClient(), FormsModule, TypeaheadModule, NgModule, NgbModule, NgbActiveModal, NgbModal, BrowserModule, CommonModule]
 };

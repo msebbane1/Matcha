@@ -17,9 +17,14 @@
     <!-- Browsing items !-->
     <div class="container" style="margin-bottom: 20px;">
       <div class="flex-item" *ngFor="let user of users" >
-        <img src="/assets/pictures/t.jpg" />
-        <button class="heart-button" (click)="toggleHeartIcon()">
-          <img [src]="heartIconSrc" class="heart-icon" />
+        <!-- <div class="flex-item" *ngFor="let like of likes" >
+          Like : {{ like.likerId }}: {{ like.likedId }}
+        </div> !-->
+        <img src="/assets/pictures/t.jpg" [ngClass]="statusIndicator([user])" />
+      <!--  
+       <button (click)="getlikedProfile(user.id)">afficher like</button> !-->
+        <button class="like-button" (click)="toggleHeartIcon(user, user.id)">
+          <img [src]="heartIconSrc(user)" class="like-icon" />
         </button>
         <a href="/home">
           <button class="profile-button">
@@ -29,9 +34,20 @@
         <div class="text-container" >
           <h1>User : {{ user.id }} {{ user.last_name }}, {{ user.age }} ans</h1>
           <h1>Gender: {{ user.gender }}, Interest : {{ user.interest }}</h1>
-          <h1>connection : {{ user.status }}</h1>
-          <h1>FameRating: {{ user.fameRating }}</h1>
           <h3>Tags: {{ user.tags }}</h3>
+          <div class="rating">
+            <input value="5" name="rating" id="star5" type="radio">
+            <label for="star5"></label>
+            <input value="4" name="rating" id="star4" type="radio">
+            <label for="star4"></label>
+            <input value="3" name="rating" id="star3" type="radio">
+            <label for="star3"></label>
+            <input value="2" name="rating" id="star2" type="radio">
+            <label for="star2"></label>
+            <input value="1" name="rating" id="star1" type="radio">
+            <label for="star1"></label>
+            <!-- <h1>FameRating: {{ user.fameRating }}</h1> !-->
+          </div>
         </div>
       </div>
     </div>

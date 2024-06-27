@@ -7,25 +7,29 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserService, User } from '../../guards/user.service';
 import { SocketService } from '../../guards/socket.service';
+import { LikeService, Likes } from '../../guards/like.service';
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [NavbarComponent, ResearchComponent, FormsModule, TypeaheadModule, CommonModule],
+  imports: [NavbarComponent, ResearchComponent,FormsModule, TypeaheadModule, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
 
+  users: User[] = [];
+  likes: Likes[] = [];
   welcomeMessage: string= "";
   messages: string[] = [];
-  users: User[] = [];
   filteredUsers: User[] = [];
   userId: number | null = null;
   userSession: any = null;
   userSessionId: any = this.getUserIdSession();
+  isOnline: boolean = false;
 
-  constructor(private userService: UserService, private socketService: SocketService) { }
+  constructor(private userService: UserService, private socketService: SocketService, private likeService: LikeService) { }
 
   getUserIdSession(){
     this.userSession = localStorage.getItem('userInfo');
@@ -51,10 +55,14 @@ export class HomeComponent implements OnInit {
     this.socketService.listen('welcome').subscribe((message: string) => {
       this.welcomeMessage = message;
     });*/
+    this.socketService.onLikeNotification().subscribe((notification: any) => {
+      console.log('Notification de like reçue :', notification.message);
+      // Handle the notification as needed
+    });
       this.userService.getPublicInfosUsers(this.userSessionId).subscribe(
-        users => {
-          this.users = users;
-          },
+        (users: User[]) => {
+          this.users = users.map(user => ({ ...user, isLikeClicked: false }));
+        },
         error => {
           console.error('Erreur lors de la récupération des infos utilisateurs', error);
         }
@@ -65,14 +73,48 @@ export class HomeComponent implements OnInit {
     this.users = users;  // Mise à jour des utilisateurs triés
   }
 
-  isHeartClicked: boolean = false;
-
-  get heartIconSrc(): string {
-    return this.isHeartClicked ? "/assets/love-button3.png" : "/assets/love-button3-2.png";
+  getlikedProfile(likedId: number): void {
+    console.log('Liked ID:', likedId);
+    const likerId = this.userSessionId;
+    this.socketService.emitLikeNotification(likerId, likedId);
+    /*
+    this.likeService.getLikedProfiles(likedId).subscribe(
+      likes => {
+        this.likes = likes;
+        },
+      error => {
+        console.error('Erreur lors de la récupération des likes', error);
+      }
+    );*/
   }
 
-  toggleHeartIcon(): void {
-    this.isHeartClicked = !this.isHeartClicked;
+// Status
+  statusIndicator(users: User[]): string[] {
+    return users.map(user => {
+      if (user.status === true) {
+        return 'status-online';
+      } else {
+        return 'status-offline';
+      }
+    });
+  }
+  // LIKE BUTTON
+  heartIconSrc(user: User): string {
+    return user.isLikeClicked ? "/assets/love-button3.png" : "/assets/love-button3-2.png";
+  }
+
+  toggleHeartIcon(user: User, likedId: number): void {
+    console.log('Liked ID:', likedId);
+    this.likeService.likeProfile(this.userSessionId, likedId).subscribe(
+      response => {
+        console.log('Profile liked successfully');
+        user.isLikeClicked = !user.isLikeClicked;
+        console.log('isLikeClicked:', user.isLikeClicked);
+      },
+      error => {
+        console.error('Error liking profile', error);
+      }
+    );
   }
 
 }

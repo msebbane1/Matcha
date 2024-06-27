@@ -56,4 +56,27 @@ export class SocketService {
       console.error('WebSocket connection is not established.');
     }
   }
+
+  /*onLikeNotification() {
+    return new Observable(observer => {
+      this.socket.on('notification-likedId', (data: any) => {
+        observer.next(data);
+      });
+    });
+  }*/
+
+  emitLikeNotification(likerId: number, likedId: number): void {
+    this.socket.emit('likeProfile', { likerId, likedId });
+  }
+
+  onLikeNotification(): Observable<any> {
+    return new Observable((observer) => {
+      this.socket.on('notification', (data: any) => {
+        observer.next(data);
+      });
+    });
+  }
+
+  
+
 }
