@@ -1,35 +1,34 @@
 const User = require('../../models/User');
 const Like = require('../../models/Like');
-const io = require('../../../index');
+const socketManager = require('../../socketManager');
 
 
 exports.likeProfile = async (req, res) => {
-
   try {
-    const { likerId, likedId } = req.body;
-    if (!likerId || !likedId) {
+      const { likerId, likedId } = req.body;
+      if (!likerId || !likedId) {
+          console.log('likerId:', likerId, 'likedId:', likedId);
+          return res.status(400).send({ message: 'Missing likerId or likedId' });
+      }
+      
       console.log('likerId:', likerId, 'likedId:', likedId);
-      return res.status(400).send({ message: 'Missing likerId or likedId' });
-    }
-    
-    console.log('likerId:', likerId, 'likedId:', likedId);
-    
-    const liker = await User.findByPk(likerId);
-    const liked = await User.findByPk(likedId);
-    
-    if (!liker || !liked) {
-      return res.status(404).send({ message: 'User not found' });
-    }
-    //io.emit('likeProfile', { likerId, likedId });
+      
+      const liker = await User.findByPk(likerId);
+      const liked = await User.findByPk(likedId);
+      
+      if (!liker || !liked) {
+          return res.status(404).send({ message: 'User not found' });
+      }
 
-    const likesId = await Like.create({ likerId, likedId });
-    // Émission d'un événement à Socket.io pour informer du like
-    io.emitLikeNotification(likerId, likedId);
+      const like = await Like.create({ likerId, likedId });
 
-    res.json(likesId);
+      // Émission d'un événement à Socket.io pour informer du like
+      socketManager.emitLikeNotification(likerId, likedId);
+
+      res.json(like);
   } catch (err) {
-    console.error('Erreur lors du like :', err);
-    res.status(500).json({ message: err.message });
+      console.error('Erreur lors du like :', err);
+      res.status(500).json({ message: err.message });
   }
 };
 
