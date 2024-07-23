@@ -98,13 +98,15 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-  // LIKE BUTTON
+  // LIKE BUTTON // A CHANGER PAR RAPPORT A LA BD
   heartIconSrc(user: User): string {
     return user.isLikeClicked ? "/assets/love-button3.png" : "/assets/love-button3-2.png";
   }
 
-  toggleHeartIcon(user: User, likedId: number): void {
+  likeButton(user: User, likedId: number): void {
     console.log('Liked ID:', likedId);
+    console.log('Liker ID:', this.userSessionId);
+    
     this.likeService.likeProfile(this.userSessionId, likedId).subscribe(
       response => {
         console.log('Profile liked successfully');

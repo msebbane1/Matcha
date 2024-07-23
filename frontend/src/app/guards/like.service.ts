@@ -16,6 +16,7 @@ export class LikeService {
 
   constructor(private http: HttpClient) {}
 
+  // a changer pour voir les reponse.data
   likeProfile(liker_id: number, liked_id: number): Observable<any> {
     return this.http.post((`${this.apiUrl}/like`), { likerId: liker_id, likedId: liked_id });
   }

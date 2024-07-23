@@ -57,13 +57,6 @@ export class SocketService {
     }
   }
 
-  /*onLikeNotification() {
-    return new Observable(observer => {
-      this.socket.on('notification-likedId', (data: any) => {
-        observer.next(data);
-      });
-    });
-  }*/
 
   emitLikeNotification(likerId: number, likedId: number): void {
     this.socket.emit('likeProfile', { likerId, likedId });
@@ -72,6 +65,7 @@ export class SocketService {
   onLikeNotification(): Observable<any> {
     return new Observable((observer) => {
       this.socket.on('notification', (data: any) => {
+        //console.log('Like notification received:', data);
         observer.next(data);
       });
     });

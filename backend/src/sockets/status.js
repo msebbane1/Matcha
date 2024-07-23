@@ -14,7 +14,10 @@ module.exports = (io, socket) => {
 
     if (!connectedUsers.has(userId)) {
         connectedUsers.add(userId);
-        console.log(`[SOCKET] User ${userId} connected.`);
+        //Joindre une salle basée sur userId
+        socket.join(userId.toString());
+        console.log(`[SOCKET] User ${userId} connected and joined room ${userId}`);
+        //update status
         User.update({ status: true }, { where: { id: userId }});
         socket.broadcast.emit('userConnected', `User ${userId} is online`);
     }
@@ -22,7 +25,7 @@ module.exports = (io, socket) => {
     socket.on('disconnect', () => {
         disconnectTimeouts[userId] = setTimeout(() => {
             connectedUsers.delete(userId);
-            console.log(`[SOCKET] User ${userId} disconnected.`);
+            console.log(`[SOCKET] User ${userId} disconnected and left room ${userId}`);
             User.update({ status: false }, { where: { id: userId }});
             io.emit('userDisconnected', `User ${userId} is offline`);
             delete disconnectTimeouts[userId];
