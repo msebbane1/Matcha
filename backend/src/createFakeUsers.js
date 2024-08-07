@@ -25,7 +25,7 @@ const interest = ['homme', 'femme', 'bisexuel'][Math.floor(Math.random() * 3)];
   return allowedTags[randomIndex];
 });
     const age = faker.datatype.number({ min: 18, max: 100 });
-    const fameRating = faker.datatype.float({ min: 0, max: 5, precision: 0.1 });
+    const fameRating = faker.datatype.number({ min: 0, max: 5 });
     const biography = faker.lorem.paragraph();
     const localisation = faker.address.city();
 

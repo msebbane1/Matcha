@@ -20,6 +20,14 @@ export class LikeService {
   likeProfile(liker_id: number, liked_id: number): Observable<any> {
     return this.http.post((`${this.apiUrl}/like`), { likerId: liker_id, likedId: liked_id });
   }
+
+  checkLikedProfiles(liker_id: number, liked_id: number): Observable<{ liked: boolean }> {
+    return this.http.post<{ liked: boolean }>((`${this.apiUrl}/likes`), { likerId: liker_id, likedId: liked_id });
+  }
+
+  getLikes(userId: number): Observable<any[]> {
+    return this.http.post<any[]>(`${this.apiUrl}/getlikes`, { userId });
+  }
   /*
 
   likeProfile(liker_id: number, liked_id: number): Observable<any> {

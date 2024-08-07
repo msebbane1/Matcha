@@ -28,6 +28,12 @@ module.exports = {
           },
           onDelete: 'CASCADE'
         },
+        isLikeClicked: {
+          type: Sequelize.BOOLEAN,                                                                                                          
+          allowNull: false,
+          defaultValue: false,
+          onDelete: 'CASCADE'
+        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,
@@ -41,7 +47,7 @@ module.exports = {
       });
   
       await queryInterface.addConstraint('Likes', {
-        fields: ['likerId', 'likedId'],
+        fields: ['likerId', 'likedId', 'isLikeClicked'],
         type: 'unique',
         name: 'unique_liker_liked'
       });

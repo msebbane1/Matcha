@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../db');
 
+
 const Like = sequelize.define('Like', {
   likerId: {
     type: DataTypes.INTEGER,
@@ -17,7 +18,13 @@ const Like = sequelize.define('Like', {
       model: 'Users',
       key: 'id'
     }
+  },
+  isLikeClicked: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
   }
 });
+
 
 module.exports = Like;

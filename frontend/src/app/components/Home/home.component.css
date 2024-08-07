@@ -18,6 +18,15 @@ html {
 }
 
 
+.status-unlike{
+  /*border-bottom: 5px solid #00C2AB;*/
+  border-bottom: 7px solid #5DCE96;
+  /*border-bottom: 5px solid #A1F410;*/
+}
+.status-like{
+  border-bottom: 7px solid #adacac;
+  /*border-bottom: 7px solid #ce5d95;*/
+}
 
 
 .status-online{
@@ -41,7 +50,7 @@ html {
   background-color: white;
   border-radius: 20px;
   display: flex;
-  height: 400px;
+  height: 365px;
   justify-content: center;
   flex-grow: 1;
   flex-basis: 300px;
@@ -125,12 +134,31 @@ html {
   height: 50px;
 }
 
+.fame-rating-icon {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #2C3E50; 
+  color: white;
+  padding: 5px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom-right-radius: 85%;
+}
+
+
 
 /* PROFILE BUTTON */
 .profile-button {
   position: absolute;
   top: 145px; 
-  right: 95px;
+  right: 124px;
   background: none;
   border: none;
   cursor: pointer;
@@ -147,12 +175,75 @@ html {
   transform: scale(1.1);
 }
 
+.famee-icon {
+    position: absolute;
+    top: 145px; 
+    right: 95px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    outline: none;
+    width: 30px;
+    height: 30px;
+}
+.fame-button {
+  position: absolute;
+  top: 317px; 
+  right: 264px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  display: inline-block; 
+}
+.fame-button img.fame-icon {
+  width: 40px;
+  height: 40px;
+}
+.fame-rating-number {
+  color: #e67e22;
+  font-weight: bold;
+}
+.fame-rating-text {
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: blue;
+  font-weight: bold;
+  font-size: calc(20% + 1vmin); 
+  line-height: 1; 
+  pointer-events: none; 
+}
+.fame-rating-box {
+  background-color: #f56b8c;
+  color: white; 
+  padding: 3px 3px; 
+  font-weight: bold;
+  text-align: center; 
+  border-radius: 5px;
+  display: inline-block; 
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); 
+  font-size: 10px; 
+  position: absolute;
+  top: 52%;
+  left: 86%;
+}
+.fame-rating-box img.fame-icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  top: -12%;
+}
+
 /* LIKE BUTTON */
 
 .like-button {
   position: absolute;
   top: 145px; 
-  right: 15px;
+  right: 50px;
   background: none;
   border: none;
   cursor: pointer;

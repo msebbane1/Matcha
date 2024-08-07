@@ -115,7 +115,7 @@ exports.register = async (req, res) => {
             gender: 'homme',
             interest: 'femme',
             age: 35,
-            fameRating: 4.5
+            fameRating: 4
           });
         await user.save();
 

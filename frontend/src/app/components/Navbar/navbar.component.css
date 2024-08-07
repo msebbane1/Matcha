@@ -73,6 +73,14 @@ body.no-scroll {
   display: none;
 }
 
+.bell-icon {
+  width: 35px;
+  height: 35px;
+  position: relative;
+  left: -30%;
+  top: -13%;
+}
+
 @media (max-width >= 800px) {
   .nav{
     backdrop-filter: blur(20px);

@@ -1,4 +1,3 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth.routes');
@@ -6,6 +5,7 @@ const userRoutes = require('./routes/user.routes');
 const likeRoutes = require('./routes/like.routes');
 const cors = require('cors');
 const pool = require('./db');
+
 
 const app = express();
 

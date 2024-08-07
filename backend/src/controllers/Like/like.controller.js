@@ -26,14 +26,23 @@ exports.likeProfile = async (req, res) => {
 
       if (!likedProfiles){
         // stocke dans la bd les likes ID
-        const like = await Like.create({ likerId, likedId });
+        await Like.create({ likerId, likedId, isLikeClicked: true });
+        //incrementer le famerating
+        await User.increment(
+          { likeCount: 1, fameRating: 1 },
+          { where: { id: likedId } }
+        );
         socketManager.emitLikeNotification(likerId, likedId);
-        res.json(like);
+        res.json({ liked: true });
       }
       else {
         socketManager.emitUnlikeNotification(likerId, likedId);
         await likedProfiles.destroy();
-        res.json({ message: 'Unlike user'});
+        await User.decrement(
+          { likeCount: 1, fameRating: 1 },
+          { where: { id: likedId } }
+        );
+        res.json({ liked: false });
       }
   } catch (err) {
       console.error('Erreur lors du like :', err);
@@ -58,6 +67,25 @@ exports.getLikedProfiles = async (req, res) => {
   }
 };
 
+exports.getLikes = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    if (!userId) {
+      throw new Error('ID de l\'utilisateur manquant');
+    }
+
+    const likes = await Like.findAll({
+      where: { likerId: userId },
+      attributes: ['likedId', 'isLikeClicked']
+    });
+
+    res.json(likes);
+  } catch (err) {
+    console.error('Error fetching likes:', err);
+    res.status(500).json({ message: err.message });
+  }
+};
+
 
 exports.checkLikedProfiles = async (req, res) => {
   try {
@@ -68,15 +96,15 @@ exports.checkLikedProfiles = async (req, res) => {
 
     const likedProfiles = await Like.findOne({ where: { likerId, likedId }});
 
-    if (likedProfiles){
-      res.json({ message: 'true'});
-    }
-    else {
-      res.json({ message: 'false'});
-    }
+    if (likedProfiles) {
+      const liked = Like.update({ isLikeClicked: true }, { where: { likerId, likedId }});
+      res.json({ liked });
+    } else {
+      const liked = Like.update({ isLikeClicked: false }, { where: { likerId, likedId }});
+      res.json({ liked });
+    }                   
 } catch (err) {
     console.error('Erreur lors du like :', err);
     res.status(500).json({ message: err.message });
 }
 };
-

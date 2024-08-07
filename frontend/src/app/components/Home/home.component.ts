@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { NavbarComponent } from '../Navbar/navbar.component';
 import { ResearchComponent } from '../Research/research.component';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   userSession: any = null;
   userSessionId: any = this.getUserIdSession();
   isOnline: boolean = false;
+  userLikes: any[] = [];
 
   constructor(private userService: UserService, private socketService: SocketService, private likeService: LikeService) { }
 
@@ -38,6 +39,34 @@ export class HomeComponent implements OnInit {
       this.userId = userInfoParse.id;
     }
     return this.userId;
+  }
+
+
+  likeButton(user: User, likedId: number): void {
+    console.log('Liked ID:', likedId);
+    console.log('Liker ID:', this.userSessionId);
+    console.log('isLikeClicked AVANT:', user.isLikeClicked);
+    
+    this.likeService.likeProfile(this.userSessionId, likedId).subscribe(
+      response => {
+        console.log('Profile liked successfully');
+        user.isLikeClicked = !user.isLikeClicked;
+        console.log('isLikeClicked APRES:', user.isLikeClicked);
+      },
+      error => {
+        console.error('Error liking profile', error);
+      }
+    );
+  }
+  heartIconSrc(user: User): string {
+    let icon = "/assets/love-button3-2.png";
+    if(user.isLikeClicked === true){
+      return "/assets/love-button3.png";
+    }
+    else{
+      return icon;
+    }
+    //return user.isLikeClicked ? "/assets/love-button3-2.png" : "/assets/love-button3.png";
   }
 
   ngOnInit() {
@@ -59,14 +88,39 @@ export class HomeComponent implements OnInit {
       console.log('Notification de like reçue :', notification.message);
       // Handle the notification as needed
     });
+      /*this.userService.getPublicInfosUsers(this.userSessionId).subscribe(
+        (users: User[]) => {
+          this.users = users.map(user => ({ ...user}));
+        },
+        error => {
+          console.error('Erreur lors de la récupération des infos utilisateurs', error);
+        }
+      );*/
+
+
       this.userService.getPublicInfosUsers(this.userSessionId).subscribe(
         (users: User[]) => {
-          this.users = users.map(user => ({ ...user, isLikeClicked: false }));
+          this.users = users.map(user => ({ ...user}));
+          this.likeService.getLikes(this.userSessionId).subscribe(
+            (likes: any[]) => {
+              this.userLikes = likes;
+              // Associez les informations de likes aux utilisateurs
+              this.users.forEach(user => {
+                const like = this.userLikes.find(l => l.likedId === user.id);
+                user.isLikeClicked = like ? like.isLikeClicked : false;
+              });
+            },
+            error => {
+              console.error('Erreur lors de la récupération des likes', error);
+            }
+          );
         },
         error => {
           console.error('Erreur lors de la récupération des infos utilisateurs', error);
         }
       );
+
+
   }
 
   onSortedUsers(users: User[]) {
@@ -98,25 +152,39 @@ export class HomeComponent implements OnInit {
       }
     });
   }
-  // LIKE BUTTON // A CHANGER PAR RAPPORT A LA BD
-  heartIconSrc(user: User): string {
-    return user.isLikeClicked ? "/assets/love-button3.png" : "/assets/love-button3-2.png";
-  }
 
-  likeButton(user: User, likedId: number): void {
-    console.log('Liked ID:', likedId);
-    console.log('Liker ID:', this.userSessionId);
-    
-    this.likeService.likeProfile(this.userSessionId, likedId).subscribe(
-      response => {
-        console.log('Profile liked successfully');
-        user.isLikeClicked = !user.isLikeClicked;
-        console.log('isLikeClicked:', user.isLikeClicked);
+ 
+  /*heartIconSrc(user: User[]): string[] {
+    return user.map(user => {
+      if (user.isLikeClicked === true) {
+        return "/assets/love-button3.png";
+      } else {
+        return "/assets/love-button3-2.png";
+      }
+    });
+  }*/
+  // LIKE BUTTON // A CHANGER PAR RAPPORT A LA BD
+ /* heartIconSrc(user: User, likedId: number): any {
+    let icon = "/assets/love-button3-2.png";
+
+    this.likeService.checkLikedProfiles(this.userSessionId, likedId).subscribe(
+      data => {
+        //console.log('data response :', data.liked);
+        //console.log('isLikeClicked AVANT:', user.isLikeClicked);
+        if(!data.liked){
+          return "/assets/love-button3.png";
+        }
+        else{
+          return icon;
+        }
       },
       error => {
         console.error('Error liking profile', error);
       }
     );
-  }
+    return icon;
+  }*/
+
+  
 
 }

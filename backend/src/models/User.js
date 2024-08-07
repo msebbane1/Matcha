@@ -79,10 +79,15 @@ const User = sequelize.define('User', {
       max: 100
     }
   },
-  fameRating: {
-    type: DataTypes.FLOAT,
+  likeCount: {
+    type: DataTypes.INTEGER,
     allowNull: false,
-    defaultValue: 0.0
+    defaultValue: 0
+  },
+  fameRating: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0
   },
   biography: {
     type: DataTypes.TEXT,
@@ -94,11 +99,16 @@ const User = sequelize.define('User', {
   },
 });
 
+
 User.belongsToMany(User, { through: Like, as: 'Liker', foreignKey: 'likerId' });
 User.belongsToMany(User, { through: Like, as: 'Liked', foreignKey: 'likedId' });
 
-
 module.exports = User;
+
+
+
+
+
 
 
 // CREER QUERY a la main et ajouter nom et prenom

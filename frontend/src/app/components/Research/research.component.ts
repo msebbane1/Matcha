@@ -5,6 +5,7 @@ import { TypeaheadModule } from 'ngx-bootstrap/typeahead';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserService, User } from '../../guards/user.service';
+import { LikeService, Likes } from '../../guards/like.service';
 
 @Component({
   selector: 'app-research',
@@ -38,9 +39,10 @@ export class ResearchComponent implements OnInit {
   fameEnabled: boolean = false;
   locationEnabled: boolean = false;
   tagsEnabled: boolean = false;
+  userLikes: any[] = [];
 
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private likeService: LikeService) { }
 
   getUserIdSession(){
     this.userSession = localStorage.getItem('userInfo');
@@ -52,14 +54,36 @@ export class ResearchComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.userService.getPublicInfosUsers(this.userSessionId).subscribe(
+
+    this.userService.getPublicInfosUsers(this.userSessionId).subscribe(
+      users => {
+        this.users = users;
+        this.likeService.getLikes(this.userSessionId).subscribe(
+          (likes: any[]) => {
+            this.userLikes = likes;
+            // Associez les informations de likes aux utilisateurs
+            this.users.forEach(user => {
+              const like = this.userLikes.find(l => l.likedId === user.id);
+              user.isLikeClicked = like ? like.isLikeClicked : false;
+            });
+          },
+          error => {
+            console.error('Erreur lors de la récupération des likes', error);
+          }
+        );
+      },
+      error => {
+        console.error('Erreur lors de la récupération des infos utilisateurs', error);
+      }
+    );
+      /*this.userService.getPublicInfosUsers(this.userSessionId).subscribe(
         users => {
           this.users = users;
           },
         error => {
           console.error('Erreur lors de la récupération des infos utilisateurs', error);
         }
-      );
+      );*/
   }
 
   toggleAdvancedSearch() {
@@ -94,6 +118,19 @@ export class ResearchComponent implements OnInit {
         console.error('Erreur lors de la récupération de tous les utilisateurs', error);
       }
     );
+    this.likeService.getLikes(this.userSessionId).subscribe(
+      (likes: any[]) => {
+        this.userLikes = likes;
+        // Associez les informations de likes aux utilisateurs
+        this.users.forEach(user => {
+          const like = this.userLikes.find(l => l.likedId === user.id);
+          user.isLikeClicked = like ? like.isLikeClicked : false;
+        });
+      },
+      error => {
+        console.error('Erreur lors de la récupération des likes', error);
+      }
+    );
     }
   }
 
@@ -106,6 +143,19 @@ export class ResearchComponent implements OnInit {
         },
       error => {
         console.error('Erreur lors de la récupération de tous les utilisateurs', error);
+      }
+    );
+    this.likeService.getLikes(this.userSessionId).subscribe(
+      (likes: any[]) => {
+        this.userLikes = likes;
+        // Associez les informations de likes aux utilisateurs
+        this.users.forEach(user => {
+          const like = this.userLikes.find(l => l.likedId === user.id);
+          user.isLikeClicked = like ? like.isLikeClicked : false;
+        });
+      },
+      error => {
+        console.error('Erreur lors de la récupération des likes', error);
       }
     );
     }

@@ -4,6 +4,7 @@ const app = require('./src/app');
 const socketIo = require('socket.io');
 const socketManager = require('./src/socketManager');
 
+
 // certificats SSL
 const privateKey = fs.readFileSync('./nginx/localhost.key', 'utf8');
 const certificate = fs.readFileSync('./nginx/localhost.crt', 'utf8');
